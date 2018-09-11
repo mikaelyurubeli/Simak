@@ -11,6 +11,15 @@ class M_user extends CI_Model{
     return $query->result();
   }
 
+  public function get_data_user($id) {
+    $query = $this->db->select('*')
+                      ->from('mahasiswa')
+                      ->where(array('id_user' => $id))
+                      ->get();
+    
+    return $query->result_array();
+  }
+
   public function block($id_user){
 
   }

@@ -1,10 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <center><h3>Daftar Bahan Kimia</h3></center>
-    </div>
-    <div class="col-md-12" style="margin-bottom: 1%;">
-      <center><?php echo anchor('admin/c_peminjaman/bahan','Tambah Bahan', array('class' => 'btn btn-success btn-sm')); ?></center>
+    <div class="col-md-12 col-xs-12">
+      <legend><h3>Daftar Bahan Kimia</h3></legend>
+      <?php echo anchor('admin/c_peminjaman/bahan','Tambah Bahan', array('class' => 'btn btn-success btn-sm', 'style' => 'margin-bottom: 20px; float: right')); ?>
     </div>
   </div>
 
@@ -43,7 +41,7 @@
             <a href="<?php echo base_url();?>admin/c_peminjaman/edit_bahan/<?php print($u->id_bahan);?>" title="Edit Data" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom">
               <span class="glyphicon glyphicon-edit" />
             </a>
-            <a href="<?php echo base_url();?>admin/c_peminjaman/do_delete_bahan/<?php print($u->id_bahan);?>" title="Delete" onClick="return doconfirm();" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom">
+            <a href="<?php echo base_url();?>admin/c_peminjaman/do_delete_bahan/<?php print($u->id_bahan);?>" title="Delete" onClick="return confirm('Apakah anda yakin akan menghapus <?php echo $u->nama_bahan?> ?');" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom">
               <span class="glyphicon glyphicon-trash" />
             </a>
           </td>

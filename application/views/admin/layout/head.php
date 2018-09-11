@@ -44,6 +44,7 @@
 			return false;
 		}
 	}
+
 	</script>
 
 	<!--[if lt IE 9]>

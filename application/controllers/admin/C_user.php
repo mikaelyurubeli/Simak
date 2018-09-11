@@ -117,6 +117,21 @@ class C_user extends CI_Controller{
 		);
 
 		$this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function reset_pass($id){
+    $noreg = $this->m_user->get_data_user($id);
+    
+    echo "<script>
+      var r = confirm('Apakah anda yakin mereset password');
+      if (r == true) {
+          txt = 'You pressed OK!';
+      } else {
+          txt = 'You pressed Cancel!';
+      }
+    </script>";
+
+    redirect('admin/c_user', 'refresh');
 	}
 
   public function edit_pass(){

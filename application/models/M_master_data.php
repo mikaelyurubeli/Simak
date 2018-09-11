@@ -15,4 +15,14 @@ class M_master_data extends CI_Model{
 		$this->db->where($where);
 		$this->db->update($table, $data);
 	}
+
+	public function data_dosen() {
+		$this->db->from('dosen');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+  public function add_dosen($data, $table){
+    $this->db->insert($table, $data);
+  }
 }

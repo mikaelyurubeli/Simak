@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid" style="margin-right: 20px; margin-left: 20px"> 
   <div class="row">
     <div class="col-md-12 col-xs-12">
-      <center><h3>Daftar Penelitian</h3></center><br/>
+      <legend><h3>Daftar Penelitian</h3></legend><br/>
     </div>
 
     <div clas="row">
@@ -9,7 +9,7 @@
         <table class="table table-striped table-datatable">
           <thead>
           <tr>
-            <th style="width: 10px">No</th>
+            <th style="width: 10px !important">No</th>
             <th>No Registrasi</th>
             <th>Nama Mahasiswa</th>
             <th>Judul Penelitian</th>

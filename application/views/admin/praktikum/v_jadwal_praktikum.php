@@ -1,8 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid" style="margin-right: 20px; margin-left: 20px">
   <div class="row">
-    <div class="col-md-12" style="margin-bottom: 1%">
-      <center><h3>Daftar Jadwal Praktikum</h3></center>
-      <center><?php echo anchor('admin/c_praktikum/add_jadwal_praktikum', 'Buat Jadwal', array('class' => 'btn btn-success btn-sm')); ?></center>
+    <div class="col-md-12 col-xs-12">
+      <legend><h3>Daftar Jadwal Praktikum</h3></legend>
+      <?php echo anchor('admin/c_praktikum/add_jadwal_praktikum', 'Buat Jadwal', array('class' => 'btn btn-success btn-sm', 'style' => 'margin-bottom: 20px; float: right')); ?>
     </div>
   </div>
 
@@ -52,7 +52,7 @@
             <td><?php echo $u->dosen ?></td>
             <td><?php echo $u->lokasi ?></td>
             <td><?php echo $u->semester ?></td>
-            <td>
+            <td style="min-width: 20px">
               <a href="<?php echo base_url();?>admin/c_praktikum/edit_jadwal/<?php print($u->id_jadwal);?>" title="Edit Data" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom">
                 <span class="glyphicon glyphicon-edit" />
               </a>

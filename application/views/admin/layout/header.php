@@ -31,20 +31,11 @@
         </ul>
       </li>
       <li><a href="<?php echo base_url();?>admin/c_penelitian">Penelitian</a></li>
-      <!--
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="">Penelitian<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="<?php echo base_url();?>c_admin/penelitian">Uji Sampel AAS</a></li>
-          <li><a href="<?php echo base_url();?>c_admin/penelitian">Uji Sampel SAA</a></li>
-        </ul>
-      </li>-->
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Peminjaman<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="<?php echo base_url();?>admin/c_peminjaman/peminjaman_alat">Peminjaman Alat</a></li>
           <li><a href="<?php echo base_url();?>admin/c_peminjaman/peminjaman_bahan">Peminjaman Bahan Kimia</a></li>
-          <!--<li><a href="<?php echo base_url();?>admin/C_peminjaman/data_alat">Alat dan Bahan</a></li>-->
           <li class="dropdown dropdown-submenu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Data</a>
             <ul class="dropdown-menu">
@@ -54,19 +45,15 @@
           </li>
         </ul>
       </li>
-
       <li><a href="<?php echo base_url();?>admin/c_asisten">Asisten</a></li>
-
-      <!--<li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Asisten<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="<?php echo base_url();?>admin/c_asisten">Pendaftaran Asisten</a></li>
-          <li><a href="<?php echo base_url();?>admin/c_asisten/asisten">Asisten</a></li>
-          <li><a href="#">Peminjaman Laboratorium</a></li>
-        </ul>
-      </li>-->
       <li><a href="<?php echo base_url();?>admin/c_user">User</a></li>
-      <li><a href="<?php echo base_url();?>admin/c_master_data">Master Data</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Master Data<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="<?php echo base_url();?>admin/c_master_data">Master Data</a></li>
+          <li><a href="<?php echo base_url();?>admin/c_master_data/dosen">Dosen</a></li>
+        </ul>
+      </li>
       <li><a href="<?php echo base_url();?>c_login/logout">Logout</a></li>
     </ul>
   </div>
