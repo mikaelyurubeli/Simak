@@ -45,7 +45,7 @@
                 <a href="<?php echo base_url();?>admin/c_user/do_delete_user/<?php print($u->id_user);?>" title="Delete" onClick="return doconfirm();" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom">
                   <span class="glyphicon glyphicon-trash" />
                 </a>
-                <a href="<?php echo base_url();?>admin/c_user/reset_pass/<?php print($u->id_user);?>" class="btn btn-success" title="Ubah Password" onClick="return confirm('Apakah anda yakin akan mereset password username: <?php print($u->username); ?> ?');" data-toggle="tooltip" data-placement="bottom">
+                <a href="<?php echo base_url();?>admin/c_user/reset_password/<?php print($u->id_user);?>" class="btn btn-success" title="Reset Password" onClick="return confirm('Apakah anda yakin akan mereset password username: <?php print($u->username); ?> ?');" data-toggle="tooltip" data-placement="bottom">
                   <span class="glyphicon glyphicon-lock" />
                 </a>
               </center>

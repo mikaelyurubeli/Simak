@@ -210,14 +210,6 @@ $this->fpdf->Cell(6, 0.5, '', 0, 0, 'J');
 $this->fpdf->Cell(6, 0.5, 'No. Reg. '.$mahasiswa['noreg'], 0, 0, 'J');
 $this->fpdf->Cell(0.25, 0.5, '');
 
-$this->fpdf->SetFont('Times', 'bu', 9);
-$this->fpdf->Ln(3);
-$this->fpdf->Cell(16.5, 0.5, 'Keterangan :', 0, 0, 'L');
-$this->fpdf->Ln(0.5);
-$this->fpdf->SetFont('Times', 'b', 9);
-$this->fpdf->Cell(16.5, 0.5, 'Spesifikasi Bahan: Merk, Tingkat Kemurnian', 0, 0, 'L');
-$this->fpdf->Ln(0.4);
-$this->fpdf->Cell(16.5, 0.5, 'Bahan atau bahan teknis', 0, 0, 'L');
 /*End of Footer*/
 
 $this->fpdf->Output('Form Peminjaman Bahan.pdf', "I");

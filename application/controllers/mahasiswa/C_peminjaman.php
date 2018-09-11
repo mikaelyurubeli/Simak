@@ -214,7 +214,7 @@ class C_peminjaman extends CI_Controller{
       $mahasiswa = $this->m_mahasiswa->mahasiswa_peminjaman()->row_array();
 
       $data = array(
-        'title' => 'Daftar Kebutuhan Bahan',
+        'title' => 'Daftar Kebutuhan Bahan Kimia',
         'lampiran' => 'Lampiran II',
         'data_bahan' => $this->m_peminjaman->pinjam_bahan($id_peminjaman),
         'mahasiswa' => $mahasiswa

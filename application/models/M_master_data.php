@@ -22,7 +22,20 @@ class M_master_data extends CI_Model{
 		return $query->result();
 	}
 
+	public function get_nama_dosen($id) {
+		$query = $this->db->from('dosen')
+											->where(array('id_dosen' => $id))
+											->get();
+
+		return $query->result_array();
+	}
+
   public function add_dosen($data, $table){
     $this->db->insert($table, $data);
+  }
+  
+  public function is_had_child($where, $table) {
+    $query = $this->db->get_where($table, $where);
+    return $query->result_array();
   }
 }

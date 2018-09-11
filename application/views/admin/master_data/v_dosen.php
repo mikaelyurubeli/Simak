@@ -13,10 +13,12 @@
             <th style="width: 10px">No</th>
             <th>NIP</th>
             <th>Nama Dosen</th>
+            <th>Aksi</th>
           </tr>
           </thead>           
           <tfoot>
             <tr>
+              <th></th>
               <th></th>
               <th></th>
               <th></th>
@@ -31,6 +33,14 @@
               <td><?php echo $no++ ?></td>
               <td class="col-md-3"><?php echo $u->nip ?></td>
               <td class="col-md-10"><?php echo $u->nama ?></td>
+              <td style="min-width: 120px">
+                <a href="<?php echo base_url();?>admin/c_master_data/edit_dosen/<?php print($u->id_dosen);?>" title="Edit Data" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom">
+                  <span class="glyphicon glyphicon-edit" />
+                </a>
+                <a href="<?php echo base_url();?>admin/c_master_data/do_delete_dosen/<?php print($u->id_dosen);?>" title="Delete" onClick="return confirm('Apakah anda yakin akan menghapus <?php print($u->nama); ?> dari daftar dosen?');" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom">
+                  <span class="glyphicon glyphicon-trash" />
+                </a>
+              </td>
             </tr>
             <?php } ?>
           </tbody>

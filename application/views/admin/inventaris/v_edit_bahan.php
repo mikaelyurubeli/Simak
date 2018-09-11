@@ -2,7 +2,7 @@
 <h3>Edit Data Bahan</h3>
 	</center>
 	<?php foreach($bahan as $u){ ?>
-	<div class="col-md-5" style="margin-top: 2%">
+	<div class="col-md-6" style="margin-top: 2%">
 	<form action="<?php echo base_url(). 'admin/c_peminjaman/update_bahan'; ?>" method="post">
 		<table class="table table-borderless">
 			<tr>
@@ -15,6 +15,10 @@
 			<tr>
 				<td>Spesifikasi</td>
 				<td><input type="text" name="spesifikasi" value="<?php echo $u->spesifikasi ?>" class="form-control" required></td>
+			</tr>
+			<tr>
+				<td>Satuan bahan</td>
+				<td><input type="text" name="satuan_bahan" value="<?php echo $u->satuan_bahan ?>" class="form-control" required></td>
 			</tr>
 			<tr>
 				<td>Persediaan</td>

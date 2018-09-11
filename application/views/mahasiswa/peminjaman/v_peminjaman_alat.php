@@ -1,5 +1,5 @@
 <div class="container-fluid mains">
-	<h3>Peminjaman Alat:</h3>
+	<h3>Peminjaman alat:</h3>
 
 	<div class="container margs">
 	<form action="<?php echo base_url();?>mahasiswa/C_peminjaman/do_peminjaman_alat" enctype="multipart/form-data" method="post" target="_blank">
@@ -18,7 +18,7 @@
 		<div class="form-group">
 			<div class="row colbox">
 				<div class="col-md-2 col-sm-2">
-					<label for="tgl_peminjaman" class="control-label">Tanggal Peminjaman:</label>
+					<label for="tgl_peminjaman" class="control-label">Tanggal Pemakaian:</label>
 				</div>
 				<div class="col-md-4 col-sm-4">
 					<input id="datepicker" class="form-control" name="tgl_peminjaman" required>

@@ -14,6 +14,10 @@
           <td><input type="text" class="form-control" id="spesifikasi" name="spesifikasi" required></td>
         </tr>
         <tr>
+          <td>Satuan bahan</td>
+          <td><input type="text" class="form-control" id="satuan_bahan" name="spesifikasi" required></td>
+        </tr>
+        <tr>
           <td>Persediaan</td>
           <td>
             <input type="text" class="form-control" id="stok" name="stok" placeholder="Persediaan" required>

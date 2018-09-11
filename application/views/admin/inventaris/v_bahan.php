@@ -36,7 +36,7 @@
           <td><?php echo $no++ ?></td>
           <td><?php echo $u->nama_bahan ?></td>
           <td><?php echo $u->spesifikasi ?></td>
-          <td><?php echo $u->stok.' / '.$u->ukuran.' g' ?></td>
+          <td><?php echo $u->stok.' / '.$u->ukuran.' '.$u->satuan_bahan ?></td>
           <td>
             <a href="<?php echo base_url();?>admin/c_peminjaman/edit_bahan/<?php print($u->id_bahan);?>" title="Edit Data" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom">
               <span class="glyphicon glyphicon-edit" />

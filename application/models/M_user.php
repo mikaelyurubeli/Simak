@@ -20,6 +20,11 @@ class M_user extends CI_Model{
     return $query->result_array();
   }
 
+  public function reset_password($where, $data) {
+    $this->db->where($where);
+    $this->db->update('tb_user', $data);
+  }
+
   public function block($id_user){
 
   }

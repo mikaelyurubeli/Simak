@@ -93,6 +93,7 @@ class C_peminjaman extends CI_Controller{
 
   public function do_add_bahan(){
     $this->form_validation->set_rules('nama_bahan', 'nama_bahan', 'trim|required');
+    $this->form_validation->set_rules('satuan_bahan', 'satuan_bahan', 'trim|required');
     $this->form_validation->set_rules('stok', 'stok', 'trim|required');
     $this->form_validation->set_rules('ukuran', 'ukuran', 'trim|required');
 
@@ -101,12 +102,14 @@ class C_peminjaman extends CI_Controller{
     } else {
       $nama_bahan = $this->input->post('nama_bahan');
       $spesifikasi = $this->input->post('spesifikasi');
+      $satuan_bahan = $this->input->post('satuan_bahan');
       $stok = $this->input->post('stok');
       $ukuran    = $this->input->post('ukuran');
 
       $data = array(
         'nama_bahan'  => $nama_bahan,
         'spesifikasi' => $spesifikasi,
+        'satuan_bahan'  => $satuan_bahan,
         'stok'        => $stok,
         'ukuran'      => $ukuran
       );
@@ -185,6 +188,7 @@ class C_peminjaman extends CI_Controller{
   public function update_bahan(){
     $this->form_validation->set_rules('nama_bahan', 'nama_bahan', 'trim|required');
     $this->form_validation->set_rules('spesifikasi', 'spesifikasi', 'trim|required');
+    $this->form_validation->set_rules('satuan_bahan', 'satuan_bahan', 'trim|required');
     $this->form_validation->set_rules('stok', 'stok', 'trim|required');
     $this->form_validation->set_rules('ukuran', 'ukuran', 'trim|required');
 
@@ -194,12 +198,14 @@ class C_peminjaman extends CI_Controller{
       $id = $this->input->post('id_bahan');
       $nama_bahan = $this->input->post('nama_bahan');
       $spesifikasi = $this->input->post('spesifikasi');
+      $satuan_bahan = $this->input->post('satuan_bahan');
       $stok = $this->input->post('stok');
       $ukuran = $this->input->post('ukuran');
 
       $data = array(
         'nama_bahan'  => $nama_bahan,
         'spesifikasi' => $spesifikasi,
+        'satuan_bahan' => $satuan_bahan,
         'stok'        => $stok,
         'ukuran'      => $ukuran
       );

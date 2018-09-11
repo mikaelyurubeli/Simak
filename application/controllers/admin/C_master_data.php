@@ -6,6 +6,7 @@ class C_master_data extends CI_Controller{
   function __construct(){
     parent::__construct();
     $this->load->model('m_master_data');
+    $this->load->model('m_user');
   }
 
   public function index(){
@@ -76,6 +77,17 @@ class C_master_data extends CI_Controller{
 
     $this->load->view('admin/layout/wrapper', $data);
   }
+  
+	public function edit_dosen($id_dosen){
+    $where = array('id_dosen' => $id_dosen);
+    $data = array(
+      'title' => 'Edit Dosen',
+      'isi'   => 'admin/master_data/v_edit_dosen',
+      'data' => $this->m_master_data->edit($where, 'dosen')->result()
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
 
   public function do_add_dosen(){
     $this->form_validation->set_rules('nip', 'nip', 'trim|required');
@@ -96,5 +108,49 @@ class C_master_data extends CI_Controller{
       echo "<script>alert('Berhasil menambah data!');</script>";
       redirect('admin/c_master_data/dosen', 'refresh');  
     }
+  }
+
+  public function do_update_dosen(){
+    $this->form_validation->set_rules('id_dosen', 'id_dosen', 'required');
+    $this->form_validation->set_rules('nip', 'nip', 'required');
+    $this->form_validation->set_rules('nama', 'nama', 'required');
+
+    if($this->form_validation->run() == FALSE){
+      echo "<script>alert('Gagal merubah data!');</script>";
+      redirect('admin/c_master_data/', 'refresh');
+    } else {
+      $id_dosen = $this->input->post('id_dosen');
+      $nip      = $this->input->post('nip');
+      $nama     = $this->input->post('nama');
+
+      $data = array(
+        'id_dosen'  => $id_dosen,
+        'nip'       => $nip,
+        'nama'      => $nama
+      );
+
+      $where = array(
+        'id_dosen' => $id_dosen
+      );
+
+      $this->m_master_data->update($where, $data, 'dosen');
+      echo "<script>alert('Data Berhasil diperbaharui!');</script>";
+      redirect('admin/c_master_data/dosen', 'refresh');
+    }
+  }
+
+  public function do_delete_dosen($id_dosen){
+    $data = $this->m_master_data->get_nama_dosen($id_dosen);
+    $where = array('dosen' => $data[0]['nama']);
+    $where_delete = array('id_dosen' => $id_dosen);
+
+    $check = $this->m_master_data->is_had_child($where, "praktikum");
+    if (count($check) > 0) {
+      echo "<script>alert('Data dosen ini tidak dapat dihapus! \\nNama dosen ini sudah terdaftar dalam praktikum \\nUntuk menghapus nama dosen ini, silahkan hubungi administrator!');</script>";
+    } else {
+      $this->m_user->delete_user($where_delete, 'dosen');
+      echo "<script>alert('Data berhasil dihapus!');</script>";
+    }
+    redirect('admin/c_master_data/dosen', 'refresh');
   }
 }

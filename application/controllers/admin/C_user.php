@@ -119,20 +119,14 @@ class C_user extends CI_Controller{
 		$this->load->view('admin/layout/wrapper', $data);
   }
   
-  public function reset_pass($id){
-    $noreg = $this->m_user->get_data_user($id);
-    
-    echo "<script>
-      var r = confirm('Apakah anda yakin mereset password');
-      if (r == true) {
-          txt = 'You pressed OK!';
-      } else {
-          txt = 'You pressed Cancel!';
-      }
-    </script>";
-
+  public function reset_password($id){
+    $data = $this->m_user->get_data_user($id);
+    $new_password = array('password' => md5($data[0]['noreg']));
+    $where = array('id_user' => $id);
+    $this->m_user->reset_password($where, $new_password);
+    echo "<script>alert('Password berhasil diperbaharui!');</script>";
     redirect('admin/c_user', 'refresh');
-	}
+  }
 
   public function edit_pass(){
     $this->form_validation->set_rules('pass_baru', 'pass_baru', 'trim|required');

@@ -40,7 +40,7 @@ $this->fpdf->SetFont('Times', '', 10);
 $this->fpdf->Cell(1, $cell, $i++, 0, 0, 'C');
 $this->fpdf->Cell(6, $cell, $u->nama_alat, 0, 0, 'L');
 $this->fpdf->Cell(5.5, $cell, $u->spesifikasi, 0, 0, 'L');
-$this->fpdf->Cell(2, $cell, $u->jumlah_peminjaman, 0, 0, 'C');
+$this->fpdf->Cell(2, $cell, $u->jumlah_peminjaman.' pcs', 0, 0, 'C');
 $this->fpdf->Ln();
 }
 
@@ -200,12 +200,6 @@ $this->fpdf->Cell(6, 0.5, '', 0, 0, 'J');
 $this->fpdf->Cell(6, 0.5, 'No. Reg. '.$mahasiswa['noreg'], 0, 0, 'J');
 $this->fpdf->Cell(0.25, 0.5, '');
 
-$this->fpdf->SetFont('Times', 'bu', 9);
-$this->fpdf->Ln(3);
-$this->fpdf->Cell(16.5, 0.5, 'Keterangan :', 0, 0, 'L');
-$this->fpdf->Ln(0.5);
-$this->fpdf->SetFont('Times', 'b', 9);
-$this->fpdf->Cell(16.5, 0.5, 'Spesifikasi Alat: Merk, Ukuran dll.', 0, 0, 'L');
 /*End of Footer*/
 
 $this->fpdf->Output('Form Peminjaman Alat.pdf', "I");
