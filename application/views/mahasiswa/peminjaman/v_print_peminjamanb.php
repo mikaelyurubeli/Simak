@@ -40,7 +40,7 @@ $this->fpdf->SetFont('Times', '', 10);
 $this->fpdf->Cell(1, $cell, $i++, 0, 0, 'C');
 $this->fpdf->Cell(6, $cell, $u->nama_bahan , 0, 0, 'L');
 $this->fpdf->Cell(5.5, $cell, $u->spesifikasi, 0, 0, 'L');
-$this->fpdf->Cell(2, $cell, $u->jumlah_peminjaman.' g', 0, 0, 'C');
+$this->fpdf->Cell(2, $cell, $u->jumlah_peminjaman.' '.$u->satuan_bahan, 0, 0, 'C');
 $this->fpdf->Ln();
 }
 /*

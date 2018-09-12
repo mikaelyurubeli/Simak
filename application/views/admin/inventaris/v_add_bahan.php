@@ -7,23 +7,32 @@
       <table class="table table-borderless">
         <tr>
           <td>Nama Bahan</td>
-          <td><input type="text" class="form-control" id="nama_alat" name="nama_bahan" required></td>
+          <td><input type="text" class="form-control" id="nama_bahan" name="nama_bahan" required></td>
         </tr>
+
         <tr>
           <td>Spesifikasi</td>
           <td><input type="text" class="form-control" id="spesifikasi" name="spesifikasi" required></td>
         </tr>
+
         <tr>
-          <td>Satuan bahan</td>
-          <td><input type="text" class="form-control" id="satuan_bahan" name="spesifikasi" required></td>
+          <td>Satuan Bahan</td>
+          <td><input type="text" class="form-control" id="satuan_bahan" name="satuan_bahan" required></td>
         </tr>
+                
+        <tr>
+          <td>Kondisi Bahan</td>
+          <td><input type="text" class="form-control" id="kondisi" name="kondisi" required></td>
+        </tr>
+
         <tr>
           <td>Persediaan</td>
           <td>
             <input type="text" class="form-control" id="stok" name="stok" placeholder="Persediaan" required>
-            <input type="text" class="form-control" id="ukuran" name="ukuran" placeholder="Ukuran (gram)" required>
+            <input type="text" class="form-control" id="ukuran" name="ukuran" placeholder="Ukuran" required>
           </td>
         </tr>
+
         <tr>
           <td></td>
           <td class="text-right">

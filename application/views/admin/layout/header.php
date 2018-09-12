@@ -30,7 +30,14 @@
           <li><a href="<?php echo base_url()?>admin/c_praktikum/riwayat_praktikum">Riwayat Praktikum</a></li>
         </ul>
       </li>
-      <li><a href="<?php echo base_url();?>admin/c_penelitian">Penelitian</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Penelitian<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="<?php echo base_url();?>admin/c_penelitian">Penelitian Umum</a></li>
+          <li><a href="<?php echo base_url();?>admin/c_penelitian/penelitian_aas">Atomic Absorbtion Spectroscopy</a></li>
+          <li><a href="<?php echo base_url();?>admin/c_penelitian/penelitian_saa">Surface Area Analyzer</a></li>
+        </ul>
+      </li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Peminjaman<span class="caret"></span></a>
         <ul class="dropdown-menu">

@@ -14,12 +14,14 @@
           <th style="width:10px">No</th>
           <th>Nama Alat</th>
           <th>Spesifikasi</th>
+          <th>Kondisi</th>
           <th>Persediaan</th>
           <th>Aksi</th>
         </tr>
         </thead>
         <tfoot>
         <tr>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -36,6 +38,7 @@
           <td><?php echo $no++ ?></td>
           <td><?php echo $u->nama_bahan ?></td>
           <td><?php echo $u->spesifikasi ?></td>
+          <td><?php echo $u->kondisi ?></td>
           <td><?php echo $u->stok.' / '.$u->ukuran.' '.$u->satuan_bahan ?></td>
           <td>
             <a href="<?php echo base_url();?>admin/c_peminjaman/edit_bahan/<?php print($u->id_bahan);?>" title="Edit Data" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom">

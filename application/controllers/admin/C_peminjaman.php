@@ -71,18 +71,22 @@ class C_peminjaman extends CI_Controller{
     $this->form_validation->set_rules('nama_alat', 'nama_alat', 'trim|required');
     $this->form_validation->set_rules('spesifikasi', 'spesifikasi', 'trim|required');
     $this->form_validation->set_rules('jumlah', 'jumlah', 'trim|required');
+    $this->form_validation->set_rules('kondisi', 'kondisi', 'trim|required');
 
     if($this->form_validation->run() == FALSE){
-      redirect('admin/c_peminjaman/data_alat_bahan');
+      echo "<script>alert(Gagal menambah data bahan!');</script>";
+      redirect('admin/c_peminjaman/data_alat', 'refresh');
     } else {
-      $nama_alat = $this->input->post('nama_alat');
-      $spesifikasi = $this->input->post('spesifikasi');
-      $jumlah    = $this->input->post('jumlah');
+      $nama_alat    = $this->input->post('nama_alat');
+      $spesifikasi  = $this->input->post('spesifikasi');
+      $jumlah       = $this->input->post('jumlah');
+      $kondisi      = $this->input->post('kondisi');
 
       $data = array(
-        'nama_alat'  => $nama_alat,
-        'spesifikasi'  => $spesifikasi,
-        'jumlah'     => $jumlah
+        'nama_alat'   => $nama_alat,
+        'spesifikasi' => $spesifikasi,
+        'jumlah'      => $jumlah,
+        'kondisi'     => $kondisi
       );
 
       $this->M_peminjaman->add_alat_bahan($data, 'alat');
@@ -94,24 +98,28 @@ class C_peminjaman extends CI_Controller{
   public function do_add_bahan(){
     $this->form_validation->set_rules('nama_bahan', 'nama_bahan', 'trim|required');
     $this->form_validation->set_rules('satuan_bahan', 'satuan_bahan', 'trim|required');
+    $this->form_validation->set_rules('kondisi', 'kondisi', 'trim|required');
     $this->form_validation->set_rules('stok', 'stok', 'trim|required');
     $this->form_validation->set_rules('ukuran', 'ukuran', 'trim|required');
 
     if($this->form_validation->run() == FALSE){
-      redirect('admin/c_peminjaman/data_alat_bahan');
+      echo "<script>alert(Gagal menambah data bahan!');</script>";
+      redirect('admin/c_peminjaman/data_bahan', 'refresh');
     } else {
-      $nama_bahan = $this->input->post('nama_bahan');
-      $spesifikasi = $this->input->post('spesifikasi');
+      $nama_bahan   = $this->input->post('nama_bahan');
+      $spesifikasi  = $this->input->post('spesifikasi');
       $satuan_bahan = $this->input->post('satuan_bahan');
-      $stok = $this->input->post('stok');
-      $ukuran    = $this->input->post('ukuran');
+      $kondisi      = $this->input->post('kondisi');
+      $stok         = $this->input->post('stok');
+      $ukuran       = $this->input->post('ukuran');
 
       $data = array(
-        'nama_bahan'  => $nama_bahan,
-        'spesifikasi' => $spesifikasi,
+        'nama_bahan'    => $nama_bahan,
+        'spesifikasi'   => $spesifikasi,
         'satuan_bahan'  => $satuan_bahan,
-        'stok'        => $stok,
-        'ukuran'      => $ukuran
+        'kondisi'       => $kondisi,
+        'stok'          => $stok,
+        'ukuran'        => $ukuran
       );
 
       $this->M_peminjaman->add_alat_bahan($data, 'bahan');
@@ -159,6 +167,7 @@ class C_peminjaman extends CI_Controller{
   public function update_alat(){
     $this->form_validation->set_rules('nama_alat', 'nama_alat', 'trim|required');
     $this->form_validation->set_rules('spesifikasi', 'spesifikasi', 'trim|required');
+    $this->form_validation->set_rules('kondisi', 'kondisi', 'trim|required');
     $this->form_validation->set_rules('jumlah', 'jumlah', 'trim|required');
 
     if($this->form_validation->run() == FALSE){
@@ -167,11 +176,13 @@ class C_peminjaman extends CI_Controller{
       $id = $this->input->post('id_alat');
       $nama_alat = $this->input->post('nama_alat');
       $spesifikasi = $this->input->post('spesifikasi');
+      $kondisi = $this->input->post('kondisi');
       $jumlah = $this->input->post('jumlah');
 
       $data = array(
         'nama_alat'  => $nama_alat,
         'spesifikasi'  => $spesifikasi,
+        'kondisi'  => $kondisi,
         'jumlah'     => $jumlah
       );
 
@@ -188,6 +199,7 @@ class C_peminjaman extends CI_Controller{
   public function update_bahan(){
     $this->form_validation->set_rules('nama_bahan', 'nama_bahan', 'trim|required');
     $this->form_validation->set_rules('spesifikasi', 'spesifikasi', 'trim|required');
+    $this->form_validation->set_rules('kondisi', 'kondisi', 'trim|required');
     $this->form_validation->set_rules('satuan_bahan', 'satuan_bahan', 'trim|required');
     $this->form_validation->set_rules('stok', 'stok', 'trim|required');
     $this->form_validation->set_rules('ukuran', 'ukuran', 'trim|required');
@@ -198,6 +210,7 @@ class C_peminjaman extends CI_Controller{
       $id = $this->input->post('id_bahan');
       $nama_bahan = $this->input->post('nama_bahan');
       $spesifikasi = $this->input->post('spesifikasi');
+      $kondisi = $this->input->post('kondisi');
       $satuan_bahan = $this->input->post('satuan_bahan');
       $stok = $this->input->post('stok');
       $ukuran = $this->input->post('ukuran');
@@ -205,6 +218,7 @@ class C_peminjaman extends CI_Controller{
       $data = array(
         'nama_bahan'  => $nama_bahan,
         'spesifikasi' => $spesifikasi,
+        'kondisi' => $kondisi,
         'satuan_bahan' => $satuan_bahan,
         'stok'        => $stok,
         'ukuran'      => $ukuran

@@ -1,15 +1,15 @@
 <div class="container-fluid mains">
-<h3>Penelitian SAA:</h3>
+<h3>Penelitian Surface Area Analyzer</h3>
 
 <div class="container margs">
 <form action="<?php echo base_url();?>mahasiswa/C_penelitian/do_penelitian_saa" enctype="multipart/form-data" method="post" target="_blank">
 
 	<div class="form-group">
 		<div class="row colbox">
-			<div class="col-md-2 col-sm-2">
-				<label for="judul_penelitian" class="control-label">Judul Penelitian:</label>
+			<div class="col-md-3 col-sm-4">
+				<label for="judul_penelitian" class="control-label">Judul Penelitian</label>
 			</div>
-			<div class="col-md-4 col-sm-4">
+			<div class="col-md-4 col-sm-6">
 				<input class="form-control" name="judul_penelitian" type="text" id="judul_penelitian" required></input>
 			</div>
 		</div>
@@ -17,21 +17,32 @@
 
 	<div class="form-group">
 		<div class="row colbox">
-			<div class="col-md-2 col-sm-2">
-				<label for="tgl_penelitian" class="control-label">Tanggal Pelaksanaan:</label>
+			<div class="col-md-3 col-sm-4">
+				<label for="tgl_penelitian" class="control-label">Tanggal Pelaksanaan</label>
 			</div>
-			<div class="col-md-4 col-sm-4">
+			<div class="col-md-4 col-sm-6">
 				<input id="datepicker" type="text" class="form-control" name="tgl_penelitian" required/>
+			</div>
+		</div>
+	</div>
+		
+	<div class="form-group">
+		<div class="row colbox">
+			<div class="col-md-3 col-sm-4">
+				<label for="tgl_penelitian" class="control-label">Instansi / Fakultas / Prodi</label>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<input id="datepicker" type="text" class="form-control" name="instansi" required/>
 			</div>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<div class="row colbox">
-			<div class="col-md-2 col-sm-2">
-				<label for="jumlah_sampel" class="control-label">Jumlah Sampel:</label>
+			<div class="col-md-3 col-sm-4">
+				<label for="jumlah_sampel" class="control-label">Jumlah Sampel</label>
 			</div>
-			<div class="col-md-4 col-sm-4">
+			<div class="col-md-4 col-sm-6">
 				<input class="form-control" name="jumlah_sampel" type="text" id="jumlah_sampel" required>
 			</div>
 		</div>
@@ -39,11 +50,11 @@
 
 	<div class="form-group">
 		<div class="row colbox">
-			<div class="col-md-2 col-sm-2">
+			<div class="col-md-3 col-sm-4">
 				<label class="control-label">Pembimbing 1</label>
 			</div>
-			<div class="col-md-4 col-sm-4">
-				<select class="form-control" id="pembimbing1" name="pembimbing1" required>
+			<div class="col-md-4 col-sm-6">
+				<select class="form-control" id="pembimbing1" name="pembimbing1" required style="margin-bottom: 15px">
 					<option value=''>--- Pembimbing 1 ---</option>
 					<?php foreach($dosen->result() as $row)  { ?>
 					<?php echo "<option value='".$row->nama."'>".$row->nama."</option>";
@@ -55,10 +66,10 @@
 
 	<div class="form-group" >
 		<div class="row colbox">
-			<div class="col-md-2 col-sm-2">
+			<div class="col-md-3 col-sm-4">
 				<label class="control-label">Pembimbing 2</label>
 			</div>
-			<div class="col-md-4 col-sm-4">
+			<div class="col-md-4 col-sm-6">
 				<select class="form-control" id="pembimbing2" name="pembimbing2" required>
 					<option value=''>--- Pembimbing 2 ---</option>
 					<?php foreach($dosen->result() as $row)  { ?>
@@ -71,7 +82,7 @@
 
 	<div class="form-group">
 		<div class="row colbox">
-			<div class="col-md-1 col-xs-3 col-md-offset-5">
+			<div class="col-md-2 col-sm-4 col-md-offset-5 col-sm-offset-6">
 				<button type="submit" class="btn btn-primary form-control">Submit</button>
 			</div>
 		</div>

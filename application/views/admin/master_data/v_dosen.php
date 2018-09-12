@@ -5,7 +5,7 @@
       <?php echo anchor('admin/c_master_data/tambah_dosen', 'Tambah Dosen', array('class' => 'btn btn-success btn-sm', 'style' => 'margin-bottom: 20px; float: right')); ?>
     </div>
 
-    <div clas="row">
+    <div class="row">
       <div class="col-md-12 col-xs-12">
         <table class="table table-striped table-datatable">
           <thead>

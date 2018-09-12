@@ -1,7 +1,7 @@
 <div class="container-fluid"> 
   <div class="row">
     <div class="col-md-12 col-xs-12">
-      <legend><h3>Daftar Penelitian</h3></legend><br/>
+      <legend><h3>Daftar Penelitian Atomic Absorbtion Spectroscopy</h3></legend><br/>
     </div>
   </div>
 
@@ -16,6 +16,8 @@
             <th>Instansi / Fakultas / Prodi</th>
             <th>Judul Penelitian</th>
             <th>Tanggal Penelitian</th>
+            <th>Uji Logam</th>
+            <th>Jumlah Sampel</th>
             <th>Aksi</th>
           </tr>
         </thead>           
@@ -25,6 +27,8 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th> 
+            <th></th> 
             <th></th> 
             <th></th> 
             <th></th> 
@@ -42,8 +46,10 @@
             <td><?php echo $u->instansi ?></td>
             <td><?php echo $u->judul_penelitian ?></td>
             <td><?php echo $u->tgl_buat_surat ?></td>
+            <td><?php echo $u->uji_logam ?></td>
+            <td><?php echo $u->jumlah_sampel ?></td>
             <td>
-              <a href="<?php echo base_url();?>admin/c_penelitian/do_delete_penelitian/<?php print($u->id_penelitian);?>" onClick="return doconfirm();" title="Delete Data" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom">
+              <a href="<?php echo base_url();?>admin/c_penelitian/do_delete_penelitian_aas/<?php print($u->id_penelitian);?>" onClick="return doconfirm();" title="Delete Data" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom">
                 <span class="glyphicon glyphicon-trash" />
             </td>
           </tr>

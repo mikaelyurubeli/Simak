@@ -12,6 +12,11 @@
           <td>Spesifikasi</td>
           <td><input type="text" class="form-control" id="spesifikasi" name="spesifikasi" required></td>
         </tr>
+        
+        <tr>
+          <td>Kondisi Alat</td>
+          <td><input type="text" class="form-control" id="kondisi" name="kondisi" required></td>
+        </tr>
 
         <tr>
           <td>Jumlah</td>

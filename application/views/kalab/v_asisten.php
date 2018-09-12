@@ -7,7 +7,7 @@
       if(empty($hasil)){
         echo "Belum ada pendaftar untuk asisten!";
       } else { ?>
-        <div clas="row">
+        <div class="row">
           <div class="col-md-12 col-xs-12">
             <table class="table table-stripped">
               <tr>

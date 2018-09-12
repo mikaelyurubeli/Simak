@@ -17,12 +17,16 @@
 				<td><input type="text" name="spesifikasi" value="<?php echo $u->spesifikasi ?>" class="form-control" required></td>
 			</tr>
 			<tr>
+				<td>Kondisi Alat</td>
+				<td><input type="text" name="kondisi" value="<?php echo $u->kondisi ?>" class="form-control" required></td>
+			</tr>
+			<tr>
 				<td>Jumlah</td>
 				<td><input type="text" name="jumlah" value="<?php echo $u->jumlah ?>" class="form-control" required></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td>
+				<td class="text-right">
 					<input action="action" onclick="window.history.go(-1); return false;" type="button" value="Back" class="btn btn-default btn-sm" style="width: 120px; height: 30px"/>
 					<input type="submit" value="Simpan" class="btn btn-success" style="width: 120px; height: 30px"/>
 				</td>

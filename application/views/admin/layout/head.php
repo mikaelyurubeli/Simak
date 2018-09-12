@@ -55,4 +55,4 @@
 
 <body>
 
-<div id="wrapper" class="alle">
+<div id="wrapper" class="alle" style="min-width: 1024px">

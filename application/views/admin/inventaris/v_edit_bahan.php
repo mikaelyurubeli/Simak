@@ -6,7 +6,7 @@
 	<form action="<?php echo base_url(). 'admin/c_peminjaman/update_bahan'; ?>" method="post">
 		<table class="table table-borderless">
 			<tr>
-				<td>Nama bahan</td>
+				<td>Nama Bahan</td>
 				<td>
 					<input type="hidden" name="id_bahan" value="<?php echo $u->id_bahan ?>" class="form-control">
 					<input type="text" name="nama_bahan" value="<?php echo $u->nama_bahan ?>" class="form-control" required>
@@ -17,8 +17,12 @@
 				<td><input type="text" name="spesifikasi" value="<?php echo $u->spesifikasi ?>" class="form-control" required></td>
 			</tr>
 			<tr>
-				<td>Satuan bahan</td>
+				<td>Satuan Bahan</td>
 				<td><input type="text" name="satuan_bahan" value="<?php echo $u->satuan_bahan ?>" class="form-control" required></td>
+			</tr>
+			<tr>
+				<td>Kondisi Bahan</td>
+				<td><input type="text" name="kondisi" value="<?php echo $u->kondisi ?>" class="form-control" required></td>
 			</tr>
 			<tr>
 				<td>Persediaan</td>
@@ -29,7 +33,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td>
+				<td class="text-right">
 					<input action="action" onclick="window.history.go(-1); return false;" type="button" value="Back" class="btn btn-default btn-sm" style="width: 120px; height: 30px"/>
          			<input type="submit" value="Simpan" class="btn btn-success" style="width: 120px; height: 30px">
 				</td>

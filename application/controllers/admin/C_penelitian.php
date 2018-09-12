@@ -17,6 +17,26 @@ class c_penelitian extends CI_Controller{
 
 		$this->load->view('admin/layout/wrapper', $data);
   }
+  
+  public function penelitian_aas(){
+    $data = array(
+			'title'	=> 'Penelitian',
+      'hasil'  => $this->m_penelitian->penelitian_aas(),
+			'isi'		=> 'admin/penelitian/v_penelitian_aas'
+		);
+
+		$this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function penelitian_saa(){
+    $data = array(
+			'title'	=> 'Penelitian',
+      'hasil'  => $this->m_penelitian->penelitian_saa(),
+			'isi'		=> 'admin/penelitian/v_penelitian_saa'
+		);
+
+		$this->load->view('admin/layout/wrapper', $data);
+  }
 
   public function do_delete_penelitian($id){
     $where = array('id_penelitian' => $id);

@@ -15,6 +15,22 @@ class M_penelitian extends CI_Model{
 
     return $query->result();
   }
+  
+  public function penelitian_aas(){
+    $query = $this->db->from('penelitian_aas')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_aas.id_mahasiswa')
+                      ->get();
+
+    return $query->result();
+  }
+  
+  public function penelitian_saa(){
+    $query = $this->db->from('penelitian_saa')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_saa.id_mahasiswa')
+                      ->get();
+
+    return $query->result();
+  }
 
   public function data_penelitian($id){
     $query = $this->db->from('penelitian')

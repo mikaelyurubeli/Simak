@@ -1,15 +1,17 @@
 <div class="container">
-  <div class="row">
+<div class="row">
     <div class="col-md-12 col-xs-12">
-    <center><h3>Daftar Peminjaman Alat</h3></center><br/>
-
-    <?php
-      if(empty($hasil)){
-        echo "<div class='text-center'>Belum ada peminjaman alat kimia!</div>";
-      } else { ?>
-        <div clas="row">
-          <div class="col-md-8 col-xs-8 col-md-offset-2 col-xs-offset-2">
-            <table class="table table-striped">
+      <legend><h3>Daftar Peminjaman Alat</h3></legend><br/>
+    </div>
+  </div>
+  <?php
+    if(empty($hasil)){
+      echo "<div class='text-center'>Belum ada peminjaman alat kimia!</div>";
+    } else { ?>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped table-datatable">
+            <thead>
               <tr>
                 <th>No</th>
                 <th>No Registrasi</th>
@@ -17,8 +19,19 @@
                 <th>Jenis Kegiatan</th>
                 <th>Tanggal Peminjaman</th>
                 <th>Aksi</th>
+              </tr>
+            </thead>
+            <tfoot>
               <tr>
-
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </tfoot>
+            <tbody>
               <?php
                 $no = 1;
                 foreach ($hasil as $u) {
@@ -36,10 +49,9 @@
                 </td>
               </tr>
               <?php } ?>
-            </table>
-          </div>
+            </tbody>
+          </table>
         </div>
-      <?php } ?>
-    </div>
-  </div>
+      </div>
+    <?php } ?>
 </div>

@@ -46,6 +46,7 @@ class C_penelitian extends CI_Controller{
   public function do_penelitian(){
     $this->form_validation->set_rules('pembimbing1', 'pembimbing1', 'required');
     $this->form_validation->set_rules('pembimbing2', 'pembimbing2', 'required');
+    $this->form_validation->set_rules('instansi', 'instansi', 'required');
     $this->form_validation->set_rules('judul_penelitian', 'judul_penelitian', 'required');
     $this->form_validation->set_rules('tgl_penelitian', 'tgl_penelitian', 'required');
 
@@ -56,6 +57,7 @@ class C_penelitian extends CI_Controller{
       $pembimbing1 			= $this->input->post('pembimbing1');
       $pembimbing2 			= $this->input->post('pembimbing2');
       $judul_penelitian = $this->input->post('judul_penelitian');
+      $instansi         = $this->input->post('instansi');
       $tgl_penelitian 	= $this->input->post('tgl_penelitian');
       $id_mahasiswa     = $this->m_mahasiswa->mahasiswa_peminjaman()->row_array();
       $tgl_buat_surat   = $this->input->post('tgl_buat_surat');
@@ -64,6 +66,7 @@ class C_penelitian extends CI_Controller{
         'pembimbing_1'      => $pembimbing1,
         'pembimbing_2'      => $pembimbing2,
         'judul_penelitian'  => $judul_penelitian,
+        'instansi'          => $instansi,
         'tgl_penelitian'    => $tgl_penelitian,
         'status'            => '1',
         'id_mahasiswa'      => $id_mahasiswa['id_mahasiswa'],
@@ -80,18 +83,20 @@ class C_penelitian extends CI_Controller{
     $this->form_validation->set_rules('pembimbing1', 'pembimbing1', 'required');
     $this->form_validation->set_rules('pembimbing2', 'pembimbing2', 'required');
     $this->form_validation->set_rules('judul_penelitian', 'judul_penelitian', 'required');
+    $this->form_validation->set_rules('instansi', 'instansi', 'required');
     $this->form_validation->set_rules('tgl_penelitian', 'tgl_penelitian', 'required');
     $this->form_validation->set_rules('jumlah_sampel', 'jumlah_sampel', 'required');
     $this->form_validation->set_rules('uji_logam', 'uji_logam', 'required');
 
     if($this->form_validation->run() == FALSE){
       echo "<script>alert('Terdapat kesalahan dalam pengisian form penelitian!');</script>";
-      redirect('mahasiswa/c_penelitian/penelitian_aas');
+      //redirect('mahasiswa/c_penelitian/penelitian_aas');
     } else {
       $pembimbing1 			= $this->input->post('pembimbing1');
       $pembimbing2 			= $this->input->post('pembimbing2');
       $judul_penelitian = $this->input->post('judul_penelitian');
       $tgl_penelitian 	= $this->input->post('tgl_penelitian');
+      $instansi         = $this->input->post('instansi');
       $jumlah_sampel  	= $this->input->post('jumlah_sampel');
       $uji_logam       	= $this->input->post('uji_logam');
       $id_mahasiswa     = $this->m_mahasiswa->mahasiswa_peminjaman()->row_array();
@@ -101,6 +106,7 @@ class C_penelitian extends CI_Controller{
         'pembimbing_1'      => $pembimbing1,
         'pembimbing_2'      => $pembimbing2,
         'judul_penelitian'  => $judul_penelitian,
+        'instansi'          => $instansi,
         'tgl_penelitian'    => $tgl_penelitian,
         'jumlah_sampel'     => $jumlah_sampel,
         'uji_logam'         => $uji_logam,
@@ -119,6 +125,7 @@ class C_penelitian extends CI_Controller{
     $this->form_validation->set_rules('pembimbing1', 'pembimbing1', 'required');
     $this->form_validation->set_rules('pembimbing2', 'pembimbing2', 'required');
     $this->form_validation->set_rules('judul_penelitian', 'judul_penelitian', 'required');
+    $this->form_validation->set_rules('instansi', 'instansi', 'required');
     $this->form_validation->set_rules('tgl_penelitian', 'tgl_penelitian', 'required');
     $this->form_validation->set_rules('jumlah_sampel', 'jumlah_sampel', 'required');
 
@@ -129,6 +136,7 @@ class C_penelitian extends CI_Controller{
       $pembimbing1 			= $this->input->post('pembimbing1');
       $pembimbing2 			= $this->input->post('pembimbing2');
       $judul_penelitian = $this->input->post('judul_penelitian');
+      $instansi         = $this->input->post('instansi');
       $tgl_penelitian 	= $this->input->post('tgl_penelitian');
       $jumlah_sampel  	= $this->input->post('jumlah_sampel');
       $id_mahasiswa     = $this->m_mahasiswa->mahasiswa_peminjaman()->row_array();
@@ -138,6 +146,7 @@ class C_penelitian extends CI_Controller{
         'pembimbing_1'      => $pembimbing1,
         'pembimbing_2'      => $pembimbing2,
         'judul_penelitian'  => $judul_penelitian,
+        'instansi'          => $instansi,
         'tgl_penelitian'    => $tgl_penelitian,
         'jumlah_sampel'     => $jumlah_sampel,
         'status'            => '1',

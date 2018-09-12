@@ -7,7 +7,7 @@
       if(empty($hasil)){
         echo "Belum ada peminjaman bahan kimia!";
       } else { ?>
-        <div clas="row">
+        <div class="row">
           <div class="col-md-8 col-xs-8 col-md-offset-2 col-xs-offset-2">
             <table class="table table-stripped">
               <tr>

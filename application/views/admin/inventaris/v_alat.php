@@ -14,12 +14,14 @@
             <th style="width: 10px">No</th>
             <th>Nama Alat</th>
             <th>Spesifikasi</th>
+            <th>Kondisi</th>
             <th>Jumlah</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -36,6 +38,7 @@
             <td><?php echo $no++ ?></td>
             <td><?php echo $u->nama_alat ?></td>
             <td><?php echo $u->spesifikasi ?></td>
+            <td><?php echo $u->kondisi ?></td>
             <td><?php echo $u->jumlah ?></td>
             <td>
               <a href="<?php echo base_url();?>admin/c_peminjaman/edit_alat/<?php print($u->id_alat);?>" title="Edit Data" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom">

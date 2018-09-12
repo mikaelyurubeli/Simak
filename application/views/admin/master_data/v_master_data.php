@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12 col-xs-12">
     <center><h3>Master Data</h3></center><br/>
-        <div clas="row">
+        <div class="row">
           <div class="col-md-12 col-xs-12">
             <table class="table table-striped">
               <tr>
