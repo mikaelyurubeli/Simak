@@ -31,6 +31,30 @@ class M_penelitian extends CI_Model{
 
     return $query->result();
   }
+    
+  public function penelitian_spektro(){
+    $query = $this->db->from('penelitian_spektro')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_spektro.id_mahasiswa')
+                      ->get();
+
+    return $query->result();
+  }
+    
+  public function penelitian_ocean(){
+    $query = $this->db->from('penelitian_ocean')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_ocean.id_mahasiswa')
+                      ->get();
+
+    return $query->result();
+  }
+    
+  public function penelitian_poten(){
+    $query = $this->db->from('penelitian_poten')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_poten.id_mahasiswa')
+                      ->get();
+
+    return $query->result();
+  }
 
   public function data_penelitian($id){
     $query = $this->db->from('penelitian')
@@ -54,6 +78,33 @@ class M_penelitian extends CI_Model{
     $query = $this->db->from('penelitian_saa')
                       ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_saa.id_mahasiswa')
                       ->where(array('penelitian_saa.id_penelitian' =>$id))
+                      ->get();
+
+    return $query->row_array();
+  }
+  
+  public function data_penelitian_spektro($id){
+    $query = $this->db->from('penelitian_spektro')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_spektro.id_mahasiswa')
+                      ->where(array('penelitian_spektro.id_penelitian' =>$id))
+                      ->get();
+
+    return $query->row_array();
+  }
+  
+  public function data_penelitian_ocean($id){
+    $query = $this->db->from('penelitian_ocean')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_ocean.id_mahasiswa')
+                      ->where(array('penelitian_ocean.id_penelitian' =>$id))
+                      ->get();
+
+    return $query->row_array();
+  }
+  
+  public function data_penelitian_poten($id){
+    $query = $this->db->from('penelitian_poten')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_poten.id_mahasiswa')
+                      ->where(array('penelitian_poten.id_penelitian' =>$id))
                       ->get();
 
     return $query->row_array();

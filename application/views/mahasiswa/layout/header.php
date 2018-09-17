@@ -64,9 +64,9 @@
             <li><a href="<?php echo base_url();?>mahasiswa/c_penelitian">Penelitian (Umum)</a></li>
             <li><a href="<?php echo base_url();?>mahasiswa/c_penelitian/penelitian_aas">Atomic Absorbtion Spectroscopy</a></li>
             <li><a href="<?php echo base_url();?>mahasiswa/c_penelitian/penelitian_saa">Surface Area Analyzer</a></li>
-            <!--<li><a href="<?php echo base_url();?>mahasiswa/c_penelitian/penelitian_aas">Spektrofotometer UV-V15</a></li>
-            <li><a href="<?php echo base_url();?>mahasiswa/c_penelitian/penelitian_saa">Ocean Optics</a></li>
-            <li><a href="<?php echo base_url();?>mahasiswa/c_penelitian/penelitian_saa">Pothentiostat</a></li>-->
+            <li><a href="<?php echo base_url();?>mahasiswa/c_penelitian/penelitian_spektro">Spektrofotometer UV-V15</a></li>
+            <li><a href="<?php echo base_url();?>mahasiswa/c_penelitian/penelitian_ocean">Ocean Optics</a></li>
+            <li><a href="<?php echo base_url();?>mahasiswa/c_penelitian/penelitian_poten">Potentiostat</a></li>
           </ul>
         </li>
         <li class="dropdown">

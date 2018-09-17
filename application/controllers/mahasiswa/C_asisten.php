@@ -8,6 +8,7 @@ class C_asisten extends CI_Controller{
     $this->load->model('m_asisten');
     $this->load->model('m_praktikum');
     $this->load->model('m_mahasiswa');
+    $this->load->model('m_master_data');
   }
 
   public function index(){
@@ -42,30 +43,41 @@ class C_asisten extends CI_Controller{
 
     if($this->form_validation->run() == FALSE){
       echo "<script>alert('Terdapat kesalahan dalam pengisian form pendaftaran!');</script>";
-      redirect('mahasiswa/c_asisten');
+      redirect('mahasiswa/c_asisten', 'refresh');
     } else {
+      $data_master    = $this->m_master_data->view()->row_array();
+      $pilihan1       = $this->input->post('pilihan_praktikum1');
+      $pilihan2       = $this->input->post('pilihan_praktikum2');
+      $pilihan3       = $this->input->post('pilihan_praktikum3');
+      $nilai          = $this->input->post('nilai_praktikum');
+      $semester       = $this->input->post('semester');
+      $jam_kosong     = $this->input->post('jam_kosong');
+      $id             = $this->m_mahasiswa->mahasiswa_peminjaman()->row_array();
+      $id_mahasiswa   = $id['id_mahasiswa'];
+      $semester_pk    = $data_master['semester'];
+      $tahun_akademik = $data_master['tahun_akademik'];
 
-      $pilihan1 = $this->input->post('pilihan_praktikum1');
-      $pilihan2 = $this->input->post('pilihan_praktikum2');
-      $pilihan3 = $this->input->post('pilihan_praktikum3');
-      $nilai    = $this->input->post('nilai_praktikum');
-      $semester = $this->input->post('semester');
-      $jam_kosong = $this->input->post('jam_kosong');
-      $id       = $this->m_mahasiswa->mahasiswa_peminjaman()->row_array();
-      $id_mahasiswa = $id['id_mahasiswa'];
-      $check = $this->m_asisten->check_pendaftaran($id_mahasiswa);
-
-      if(count($check) > 2){
-        echo "<script>alert('Anda sudah melakukan pendaftaran, harap hubungi administrator laboratorium!');</script>";
+      $check        = $this->m_asisten->check_pendaftaran($id_mahasiswa);
+      $check_smt    = false;
+      if (count($check) > 0) {
+        $check_smt = $check[0]['semester_pk'] == $semester_pk;
+      }
+      if (count($check) == 1 && $check_smt == true) {
+        echo "<script>alert('Anda sudah melakukan pendaftaran untuk semester ini, harap hubungi administrator laboratorium jika anda ingin merubah data pendaftaran!');</script>";
+        redirect('mahasiswa/c_asisten', 'refresh');
+      } else if(count($check) > 1){
+        echo "<script>alert('Anda sudah melakukan pendaftaran asisten sebanyak 2 kali, harap hubungi administrator laboratorium jika anda ingin merubah data pendaftaran!');</script>";
         redirect('mahasiswa/c_asisten', 'refresh');
       } else {
         $data = array(
           'pilihan_praktikum1' => $pilihan1,
           'pilihan_praktikum2' => $pilihan2,
           'pilihan_praktikum3' => $pilihan3,
-          'nilai_kimia_organik' => $nilai,
+          'nilai_kimia_organik'=> $nilai,
           'jam_kosong'         => $jam_kosong,
           'semester'           => $semester,
+          'semester_pk'        => $semester_pk,
+          'tahun_akademik'     => $tahun_akademik,
           'status'             => '1',
           'id_mahasiswa'       => $id_mahasiswa
         );

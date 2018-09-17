@@ -81,15 +81,35 @@ class C_asisten extends CI_Controller{
     define('FPDF_FONTPATH',$this->config->item('fonts_path'));
 
     $this->session->all_userdata();
-    $semester = $this->m_master_data->view()->row_array();
-    $type_smt = strtoupper($semester['type_smt']);
+    $daftar = $this->m_asisten->data_pendaftaran($id_daftar);
+    $master_data = $this->m_master_data->view()->row_array();
+    
+    $semester = $master_data['semester'];
+    $data_type_smt = 1;
+    if ($daftar['semester_pk'] != NULL) {
+      $semester = $daftar['semester_pk'];
+      $data_type_smt = $daftar['semester_pk'];
+    }
+
+    $type_smt = strtoupper($master_data['type_smt']);
+    if ($data_type_smt % 2 == 0) {
+      $type_smt = "GENAP";
+    } else {
+      $type_smt = "GANJIL";
+    }
+
+    $tahun_akademik = $master_data['tahun_akademik'];
+    if ($daftar['tahun_akademik'] != NULL) {
+      $tahun_akademik = $daftar['tahun_akademik'];
+    }
+
     $data = array(
       'title'           => 'Praktikum',
-      'daftar'          => $this->m_asisten->data_pendaftaran($id_daftar),
+      'daftar'          => $daftar,
       'mahasiswa'       => $this->m_asisten->asisten_mahasiswa($id_mahasiswa),
-      'semester'        => $semester['semester'],
+      'semester'        => $master_data['semester'],
       'type_smt'        => $type_smt,
-      'tahun_akademik'  => $semester['tahun_akademik']
+      'tahun_akademik'  => $tahun_akademik
     );
 
     // Load view "pdf_report" untuk menampilkan hasilnya

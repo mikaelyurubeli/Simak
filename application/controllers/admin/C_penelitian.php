@@ -37,6 +37,36 @@ class c_penelitian extends CI_Controller{
 
 		$this->load->view('admin/layout/wrapper', $data);
   }
+  
+  public function penelitian_poten(){
+    $data = array(
+			'title'	=> 'Penelitian',
+      'hasil'  => $this->m_penelitian->penelitian_poten(),
+			'isi'		=> 'admin/penelitian/v_penelitian_poten'
+		);
+
+		$this->load->view('admin/layout/wrapper', $data);
+  }
+    
+  public function penelitian_ocean(){
+    $data = array(
+			'title'	=> 'Penelitian',
+      'hasil'  => $this->m_penelitian->penelitian_ocean(),
+			'isi'		=> 'admin/penelitian/v_penelitian_ocean'
+		);
+
+		$this->load->view('admin/layout/wrapper', $data);
+  }
+    
+  public function penelitian_spektro(){
+    $data = array(
+			'title'	=> 'Penelitian',
+      'hasil'  => $this->m_penelitian->penelitian_spektro(),
+			'isi'		=> 'admin/penelitian/v_penelitian_spektro'
+		);
+
+		$this->load->view('admin/layout/wrapper', $data);
+  }
 
   public function do_delete_penelitian($id){
     $where = array('id_penelitian' => $id);
