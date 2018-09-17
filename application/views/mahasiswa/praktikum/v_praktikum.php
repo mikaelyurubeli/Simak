@@ -30,9 +30,9 @@
 	        <tr>
 	          <th>No</th>
 	          <th>Kode</th>
-	          <th>Hari / Jam</th>
 	          <th>Praktikum</th>
 	          <th>Dosen</th>
+	          <th>Hari / Jam</th>
 	          <th>Lokasi</th>
 	        <tr>
 	        <?php
@@ -42,9 +42,9 @@
 						<tr>
 							<td><?php echo $no++ ?></td>
 							<td><?php echo $u->kode_praktikum ?></td>
-							<td class="col-md-3"><?php echo $u->hari," / ",$u->jam ?></td>
 							<td><?php echo $u->nama_praktikum ?></td>
 							<td><?php echo $u->dosen ?></td>
+							<td><?php echo $u->hari," / ",$u->jam ?></td>
 							<td><?php echo $u->lokasi ?></td>
 						</tr>
 	        <?php } ?>

@@ -42,11 +42,19 @@ class C_master_data extends CI_Controller{
       $semester			    = $this->input->post('semester');
       $tahun_akademik   = $this->input->post('tahun_akademik');
       $daftar_praktikum = $this->input->post('daftar_praktikum');
+      $type_smt         = "";
+
+      if($semester % 2 == 0) { 
+        $type_smt = "Genap";
+      } else { 
+        $type_smt = "Ganjil";
+      }
 
       $data = array(
         'semester'        => $semester,
         'tahun_akademik'  => $tahun_akademik,
         'daftar_praktikum'=> $daftar_praktikum,
+        'type_smt'        => $type_smt,
       );
 
       $where = array(

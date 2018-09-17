@@ -55,7 +55,7 @@ class C_asisten extends CI_Controller{
       $id_mahasiswa = $id['id_mahasiswa'];
       $check = $this->m_asisten->check_pendaftaran($id_mahasiswa);
 
-      if(count($check) > 0){
+      if(count($check) > 2){
         echo "<script>alert('Anda sudah melakukan pendaftaran, harap hubungi administrator laboratorium!');</script>";
         redirect('mahasiswa/c_asisten', 'refresh');
       } else {

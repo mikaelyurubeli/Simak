@@ -19,7 +19,7 @@ $this->fpdf->SetFont('Times','',12);
 $this->fpdf->SetFont('Times','B',14);
 $this->fpdf->Cell(17,1,'FORM PENDAFTARAN ASISTEN PRAKTIKUM',0,0,'C');
 $this->fpdf->Ln(1);
-$this->fpdf->Cell(17,1, 'SEMESTER GANJIL (107) TAHUN AKADEMIK 2016/2017', 0, 0, 'C');
+$this->fpdf->Cell(17,1, 'SEMESTER '.$type_smt.' ('.$semester.') TAHUN AKADEMIK '.$tahun_akademik, 0, 0, 'C');
 $this->fpdf->Ln(2);
 $this->fpdf->image($mahasiswa['url_foto'], 16.5, 5, 3, 4);
 $this->fpdf->Ln(5);

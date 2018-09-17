@@ -8,6 +8,7 @@ class C_asisten extends CI_Controller{
     $this->load->model('m_crud');
     $this->load->model('m_asisten');
     $this->load->model('m_praktikum');
+    $this->load->model('m_master_data');
   }
 
   public function index(){
@@ -80,11 +81,15 @@ class C_asisten extends CI_Controller{
     define('FPDF_FONTPATH',$this->config->item('fonts_path'));
 
     $this->session->all_userdata();
-
+    $semester = $this->m_master_data->view()->row_array();
+    $type_smt = strtoupper($semester['type_smt']);
     $data = array(
-      'title' => 'Praktikum',
-      'daftar' => $this->m_asisten->data_pendaftaran($id_daftar),
-      'mahasiswa' => $this->m_asisten->asisten_mahasiswa($id_mahasiswa)
+      'title'           => 'Praktikum',
+      'daftar'          => $this->m_asisten->data_pendaftaran($id_daftar),
+      'mahasiswa'       => $this->m_asisten->asisten_mahasiswa($id_mahasiswa),
+      'semester'        => $semester['semester'],
+      'type_smt'        => $type_smt,
+      'tahun_akademik'  => $semester['tahun_akademik']
     );
 
     // Load view "pdf_report" untuk menampilkan hasilnya
