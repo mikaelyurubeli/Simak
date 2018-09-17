@@ -313,4 +313,61 @@ class c_praktikum extends CI_controller{
     $this->load->view('admin/praktikum/v_print_penilaian', $data);
   }
 
+  public function daftar_alat_pecah() {
+    $data = array(
+      'title' => 'Daftar Alat Pecah',
+      'isi'   => 'admin/praktikum/v_daftar_alat_pecah',
+      'data'  => $this->m_praktikum->daftar_alat_pecah()->result()
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function tambah_alat_pecah() {
+    $data = array(
+      'title' => 'Tambah Daftar Alat Pecah',
+      'isi'   => 'admin/praktikum/v_add_alat_pecah',
+      'semester' => $this->m_praktikum->semester()
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+
+  public function do_add_daftar_alat_pecah(){
+    $this->form_validation->set_rules('nama', 'nama', 'required');
+    $this->form_validation->set_rules('noreg', 'noreg', 'required');
+    $this->form_validation->set_rules('praktikum', 'praktikum', 'required');
+    $this->form_validation->set_rules('alat_pecah', 'alat_pecah', 'required');
+    $this->form_validation->set_rules('spesifikasi', 'spesifikasi', 'required');
+    $this->form_validation->set_rules('jumlah', 'jumlah', 'required');
+    $this->form_validation->set_rules('semester', 'semester', 'required');
+
+    if($this->form_validation->run() == FALSE){
+      echo "<script>alert('Terdapat kesalahan pada data yang anda isi!')</script>";
+      redirect('admin/c_praktikum/tambah_alat_pecah', 'refresh');
+    } else {
+      $nama         = $this->input->post('nama');
+      $noreg        = $this->input->post('noreg');
+      $praktikum    = $this->input->post('praktikum');
+      $alat_pecah   = $this->input->post('alat_pecah');
+      $spesifikasi  = $this->input->post('spesifikasi');
+      $jumlah       = $this->input->post('jumlah');
+      $semester       = $this->input->post('semester');
+
+      $data = array(
+        'nama'        => $nama,
+        'noreg'       => $noreg,
+        'praktikum'   => $praktikum,
+        'alat_pecah'  => $alat_pecah,
+        'spesifikasi' => $spesifikasi,
+        'jumlah'      => $jumlah,
+        'semester'    => $semester,
+      );
+
+      $this->m_praktikum->add_praktikum($data, 'daftar_alat_pecah');
+      echo "<script>alert('Berhasil menambah data!');</script>";
+      redirect('admin/c_praktikum/daftar_alat_pecah', 'refresh');
+    }
+  }
+
 }

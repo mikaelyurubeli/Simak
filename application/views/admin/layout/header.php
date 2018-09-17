@@ -27,7 +27,8 @@
         <ul class="dropdown-menu">
           <li><a href="<?php echo base_url();?>admin/c_praktikum/praktikum">Daftar Praktikum</a></li>
           <li><a href="<?php echo base_url();?>admin/c_praktikum/jadwal_praktikum">Jadwal Praktikum</a></li>
-          <li><a href="<?php echo base_url()?>admin/c_praktikum/riwayat_praktikum">Riwayat Praktikum</a></li>
+          <li><a href="<?php echo base_url();?>admin/c_praktikum/riwayat_praktikum">Riwayat Praktikum</a></li>
+          <li><a href="<?php echo base_url();?>admin/c_praktikum/daftar_alat_pecah">Daftar Alat Pecah</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -62,6 +63,7 @@
         <ul class="dropdown-menu">
           <li><a href="<?php echo base_url();?>admin/c_master_data">Master Data</a></li>
           <li><a href="<?php echo base_url();?>admin/c_master_data/dosen">Dosen</a></li>
+          <li><a href="<?php echo base_url();?>admin/c_master_data/view_semester">Semester</a></li>
         </ul>
       </li>
       <li><a href="<?php echo base_url();?>c_login/logout">Logout</a></li>

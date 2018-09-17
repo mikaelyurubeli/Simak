@@ -102,6 +102,7 @@ class C_master_data extends CI_Controller{
     $this->form_validation->set_rules('nama', 'nama', 'trim|required');
   
     if($this->form_validation->run() == FALSE){
+      echo "<script>alert('Gagal menambah data!');</script>";
       redirect('admin/c_master_data/tambah_dosen');
     } else {
       $nip = $this->input->post('nip');
@@ -161,4 +162,51 @@ class C_master_data extends CI_Controller{
     }
     redirect('admin/c_master_data/dosen', 'refresh');
   }
+
+  public function view_semester() {
+    $data = array (
+      'title' => 'Dosen',
+      'data'  => $this->m_master_data->data_semester(),
+      'isi'   => 'admin/master_data/v_semester' 
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function tambah_semester() {
+    $data = array (
+      'title' => 'Dosen',
+      'isi'   => 'admin/master_data/v_add_semester' 
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function do_add_semester(){
+    $this->form_validation->set_rules('semester', 'semester', 'trim|required');
+  
+    if($this->form_validation->run() == FALSE){
+      echo "<script>alert('Gagal menambah data!');</script>";
+      redirect('admin/c_master_data/tambah_semester');
+    } else {
+      $semester = $this->input->post('semester');
+
+      $data = array(
+        'semester'  => $semester,
+      );
+
+      $where = array('semester' => $semester);
+      $check = $this->m_master_data->check_duplicate($where, 'semester');
+
+      if (count($check) > 0) {
+        echo "<script>alert('Semester {$semester} sudah dibuat!');</script>";
+        redirect('admin/c_master_data/tambah_semester', 'refresh');
+      } else {
+        $this->m_master_data->add_dosen($data, 'semester');
+        echo "<script>alert('Berhasil menambah data!');</script>";
+        redirect('admin/c_master_data/view_semester', 'refresh');
+      }
+    }
+  }
+
 }

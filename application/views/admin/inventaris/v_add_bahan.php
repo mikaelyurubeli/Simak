@@ -1,9 +1,10 @@
 <div class="container">
   <h3>Tambah Bahan</h3>
-  <div class="row">
+  <br />
+
   <div class="col-md-5">
     <?php echo validation_errors(); ?>
-    <form action="<?php echo base_url();?>admin/c_peminjaman/do_add_bahan" method="post">
+    <form action="<?php echo base_url();?>admin/c_peminjaman/do_add_bahan" method="post" enctype="multipart/form-data" runat="server">
       <table class="table table-borderless">
         <tr>
           <td>Nama Bahan</td>
@@ -32,6 +33,13 @@
             <input type="text" class="form-control" id="ukuran" name="ukuran" placeholder="Ukuran" required>
           </td>
         </tr>
+        
+        <tr>
+          <td>LDKB</td>
+          <td>
+            <input type="file" accept=".pdf" id="ldkb" name="ldkb" required>
+          </td>
+        </tr>
 
         <tr>
           <td></td>
@@ -43,5 +51,4 @@
       </table>
   	</form>
   </div>
-</div>
 </div>

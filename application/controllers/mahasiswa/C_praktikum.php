@@ -7,6 +7,7 @@ class C_praktikum extends CI_Controller{
     parent::__construct();
     $this->load->model('m_praktikum');
     $this->load->model('m_mahasiswa');
+    $this->load->model('m_master_data');
   }
 
   //View
@@ -124,6 +125,34 @@ class C_praktikum extends CI_Controller{
     );
     // Load view "pdf_report" untuk menampilkan hasilnya
     $this->load->view('mahasiswa/praktikum/v_print_rp', $data);
+  }
+
+  public function daftar_alat_pecah(){
+    $semester = $this->input->post('pilihsmt');
+
+    $data = array(
+      'title'         => 'Daftar Alat Pecah',
+      'isi'           => 'mahasiswa/praktikum/v_daftar_alat_pecah',
+      'list_semester' => $this->m_praktikum->get_dropdown_semester(),
+      'smt'           => null,
+      'tahun_akademik'=> null
+    );
+    $this->load->view('mahasiswa/layout/wrapper', $data);
+  }
+  
+  public function lihat_daftar_alat_pecah(){
+    $semester     = $this->input->post('pilihsmt');
+    $data_master  = $this->m_master_data->view()->row_array();
+    $data = array(
+      'title'         => 'Daftar Alat Pecah',
+      'isi'           => 'mahasiswa/praktikum/v_daftar_alat_pecah',
+      'data'          => $this->m_praktikum->daftar_alat_pecah_smt($semester),
+      'list_semester' => $this->m_praktikum->get_dropdown_semester(),
+      'smt'           => $semester,
+      'tahun_akademik'=> $data_master['tahun_akademik']
+    );
+
+    $this->load->view('mahasiswa/layout/wrapper', $data);
   }
 
 

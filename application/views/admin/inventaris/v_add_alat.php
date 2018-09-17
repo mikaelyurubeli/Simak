@@ -1,5 +1,6 @@
 <div class="container">
   <h3>Tambah Alat</h3>
+  <br />
   <div class="col-md-5">
     <?php echo validation_errors(); ?>
     <form action="<?php echo base_url();?>admin/c_peminjaman/do_add_alat" method="post">

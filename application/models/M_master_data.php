@@ -37,5 +37,16 @@ class M_master_data extends CI_Model{
   public function is_had_child($where, $table) {
     $query = $this->db->get_where($table, $where);
     return $query->result_array();
-  }
+	}
+	
+	public function data_semester() {
+		$this->db->from('semester');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function check_duplicate($where, $table) {
+		$query = $this->db->get_where($table, $where);
+    return $query->result_array();
+	}
 }

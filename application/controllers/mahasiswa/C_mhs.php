@@ -162,7 +162,7 @@ class C_mhs extends CI_Controller{
       $tahun_angkatan = $this->input->post('tahun_angkatan');
       $id_user    = $this->input->post('id_user');
 
-	  $config['upload_path']          = './upload/';
+	  	$config['upload_path']          = './upload/';
       $config['allowed_types']        = 'gif|jpg|png|jpeg';
       $config['max_size']             = 2048;
 			
@@ -171,7 +171,7 @@ class C_mhs extends CI_Controller{
       if ( !$this->upload->do_upload('url_foto')){
 				echo "<script>alert('Gagal menyimpan data!');</script>";
 				redirect('c_login/dashboard', 'refresh');
-      }else{
+      } else {
 				$image_data = $this->upload->data();
 
 				$data = array(

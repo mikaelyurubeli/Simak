@@ -94,12 +94,12 @@ class M_praktikum extends CI_Model {
                   ->get();
 
 		if($hasil_jadwal->num_rows() > 0){
-      foreach ($hasil_jadwal->result() as $data) {
-        $hasil[] = $data;
-      }
+		foreach ($hasil_jadwal->result() as $data) {
+			$hasil[] = $data;
+		}
 
-      return $hasil;
-    }
+      		return $hasil;
+    	}
 	}
 
 	public function jadwal_praktikum_all(){
@@ -308,5 +308,24 @@ class M_praktikum extends CI_Model {
 			}
 		}
 		return $return;
+	}
+
+	public function daftar_alat_pecah() {
+		return $this->db->get('daftar_alat_pecah');
+	}
+
+	public function daftar_alat_pecah_smt($semester){
+		$hasil_jadwal = $this->db->select('*')
+                  ->from('daftar_alat_pecah')
+				  ->where('semester', $semester)
+                  ->get();
+
+		if($hasil_jadwal->num_rows() > 0){
+		foreach ($hasil_jadwal->result() as $data) {
+			$hasil[] = $data;
+		}
+
+      		return $hasil;
+    	}
 	}
 }

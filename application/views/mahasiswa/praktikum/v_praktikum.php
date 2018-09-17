@@ -15,7 +15,7 @@
 						<button class="btn btn-default" type="submit" name="submit" style="width: 160px">Lihat</button>
 					</div>
 			</form>
-			<hr><br>
+			<hr>
 		</div>
 	</div>
 			
@@ -23,7 +23,7 @@
 		<div class="col-md-12 ">
 			<?php
 	      if(empty($jadwal)){
-	        echo "<center><h4>Belum ada jadwal untuk semester ini!</h4></center>";
+	        echo "<center><h4>Belum ada jadwal untuk semester ini!</h4></center><br />";
 	      } else {
 	    ?>
 				<table class="table table-stripped">
