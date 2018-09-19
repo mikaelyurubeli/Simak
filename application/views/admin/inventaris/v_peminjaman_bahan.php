@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-xs-12">
-      <legend><h3>Daftar Peminjaman Bahan Kimia</h3></legend><br/>
+      <legend><h3>Daftar Pemakaian Bahan Kimia</h3></legend><br/>
     </div>
   </div>
 
   <?php
     if(empty($hasil)){
-      echo "<div class='text-center'>Belum ada peminjaman bahan kimia!</div>";        
+      echo "<div class='text-center'>Belum ada pemakaian bahan kimia!</div>";        
     } else { ?>
       <div class="row">
         <div class="col-md-12">

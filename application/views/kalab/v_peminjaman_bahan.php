@@ -5,7 +5,7 @@
 
     <?php
       if(empty($hasil)){
-        echo "Belum ada peminjaman bahan kimia!";
+        echo "Belum ada pemakaian bahan kimia!";
       } else { ?>
         <div class="row">
           <div class="col-md-8 col-xs-8 col-md-offset-2 col-xs-offset-2">
