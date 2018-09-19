@@ -172,4 +172,9 @@ class M_peminjaman extends CI_Model{
     return $query->row_array();
   }
 
+  public function check_inven_child($table, $where) {
+    $query = $this->db->get_where($table, $where);
+    return $query->result_array();
+  }
+
 }

@@ -6,7 +6,7 @@
     <form action="<?php echo base_url();?>admin/c_peminjaman/do_add_alat" method="post">
       <table class="table table-borderless">
         <tr>
-          <td>Nama Alat</td>
+          <td style="min-width: 150px">Nama Alat</td>
           <td><input type="text" class="form-control" id="nama_alat" name="nama_alat" required></td>
         </tr>
         <tr>

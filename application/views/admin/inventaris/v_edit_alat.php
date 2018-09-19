@@ -6,7 +6,7 @@
 	<form action="<?php echo base_url(). 'admin/c_peminjaman/update_alat'; ?>" method="post">
 		<table class="table table-borderless">
 			<tr>
-				<td>Nama Alat</td>
+				<td style="min-width: 150px">Nama Alat</td>
 				<td>
 					<input type="hidden" name="id_alat" value="<?php echo $u->id_alat ?>" class="form-control">
 					<input type="text" name="nama_alat" value="<?php echo $u->nama_alat ?>" class="form-control" required>

@@ -7,7 +7,7 @@
     <form action="<?php echo base_url();?>admin/c_peminjaman/do_add_bahan" method="post" enctype="multipart/form-data" runat="server">
       <table class="table table-borderless">
         <tr>
-          <td>Nama Bahan</td>
+          <td style="min-width: 150px">Nama Bahan</td>
           <td><input type="text" class="form-control" id="nama_bahan" name="nama_bahan" required></td>
         </tr>
 
@@ -37,7 +37,7 @@
         <tr>
           <td>LDKB</td>
           <td>
-            <input type="file" accept=".pdf" id="ldkb" name="ldkb" required>
+            <input type="file" accept=".pdf" id="ldkb" name="ldkb">
           </td>
         </tr>
 

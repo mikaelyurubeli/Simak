@@ -114,26 +114,41 @@ class C_peminjaman extends CI_Controller{
       $ukuran       = $this->input->post('ukuran');
       $ldkb         = $this->input->post('ldkb');
 
-      $config['upload_path']          = './upload/Bahan-LDKB';
-      $config['allowed_types']        = 'pdf';
-      $config['max_size']             = 2048;
-			
-      $this->load->library('upload', $config);
+      if ($_FILES['ldkb']['name'] != "") {
+        $config['upload_path']          = './upload/Bahan-LDKB';
+        $config['allowed_types']        = 'pdf';
+        $config['max_size']             = 2048;
+        
+        $this->load->library('upload', $config);
 
-      if ( !$this->upload->do_upload('ldkb')){
-				echo "<script>alert('Gagal menyimpan data!');</script>";
-				redirect('admin/c_peminjaman/data_bahan', 'refresh');
+        if ( !$this->upload->do_upload('ldkb')){
+          echo "<script>alert('Gagal menyimpan data!');</script>";
+          redirect('admin/c_peminjaman/data_bahan', 'refresh');
+        } else {
+          $ldkb = $this->upload->data();
+
+          $data = array(
+            'nama_bahan'    => $nama_bahan,
+            'spesifikasi'   => $spesifikasi,
+            'satuan_bahan'  => $satuan_bahan,
+            'kondisi'       => $kondisi,
+            'stok'          => $stok,
+            'ukuran'        => $ukuran,
+            'ldkb'          => 'upload/Bahan-LDKB/'.$ldkb['file_name'],
+          );
+
+          $this->M_peminjaman->add_alat_bahan($data, 'bahan');
+          echo "<script>alert('Berhasil menambah data bahan!');</script>";
+          redirect('admin/c_peminjaman/data_bahan', 'refresh');
+        }
       } else {
-        $ldkb = $this->upload->data();
-
         $data = array(
           'nama_bahan'    => $nama_bahan,
           'spesifikasi'   => $spesifikasi,
           'satuan_bahan'  => $satuan_bahan,
           'kondisi'       => $kondisi,
           'stok'          => $stok,
-          'ukuran'        => $ukuran,
-          'ldkb'          => 'upload/Bahan-LDKB/'.$ldkb['file_name'],
+          'ukuran'        => $ukuran
         );
 
         $this->M_peminjaman->add_alat_bahan($data, 'bahan');
@@ -145,16 +160,32 @@ class C_peminjaman extends CI_Controller{
 
   public function do_delete_alat($id_alat){
     $where = array('id_alat' => $id_alat);
-    $this->M_peminjaman->delete_alat_bahan($where, 'alat');
-    echo "<script>alert('Data berhasil dihapus!');</script>";
-    redirect('admin/c_peminjaman/data_alat', 'refresh');
+    
+    $check = $this->M_peminjaman->check_inven_child('daftar_peminjaman_alat', $where);
+    if (count($check) > 0) {
+      echo "<script>alert('Alat ini tidak dapat dihapus! \\nUntuk menghapus alat ini, silahkan hubungi administrator!');</script>";
+      redirect('admin/c_peminjaman/data_alat', 'refresh');
+    } else {
+      $this->M_peminjaman->delete_alat_bahan($where, 'alat');
+      echo "<script>alert('Data berhasil dihapus!');</script>";
+      redirect('admin/c_peminjaman/data_alat', 'refresh');
+    }
   }
 
   public function do_delete_bahan($id_bahan){
     $where = array('id_bahan' => $id_bahan);
-    $this->M_peminjaman->delete_alat_bahan($where, 'bahan');
-    echo "<script>alert('Data berhasil dihapus!');</script>";
-    redirect('admin/c_peminjaman/data_bahan', 'refresh');
+
+    $data = $this->M_peminjaman->edit_alat_bahan($where, 'bahan')->row_array();
+    $check = $this->M_peminjaman->check_inven_child('daftar_peminjaman_bahan', $where);
+    if (count($check) > 0) {
+      echo "<script>alert('Bahan kimia ini tidak dapat dihapus! \\nUntuk menghapus bahan kimia ini, silahkan hubungi administrator!');</script>";
+      redirect('admin/c_peminjaman/data_bahan', 'refresh');
+    } else {
+      unlink($data['ldkb']);
+      $this->M_peminjaman->delete_alat_bahan($where, 'bahan');
+      echo "<script>alert('Data berhasil dihapus!');</script>";
+      redirect('admin/c_peminjaman/data_bahan', 'refresh');
+    }
   }
 
   public function edit_alat($id_alat){
@@ -219,33 +250,71 @@ class C_peminjaman extends CI_Controller{
     $this->form_validation->set_rules('stok', 'stok', 'trim|required');
     $this->form_validation->set_rules('ukuran', 'ukuran', 'trim|required');
 
-    if($this->form_validation->run() == FALSE){
+    if($this->form_validation->run() == FALSE) {
+      echo "<script>alert('Gagal menyimpan data!');</script>";
       redirect('admin/c_peminjaman/edit_bahan');
     } else {
-      $id = $this->input->post('id_bahan');
-      $nama_bahan = $this->input->post('nama_bahan');
-      $spesifikasi = $this->input->post('spesifikasi');
-      $kondisi = $this->input->post('kondisi');
+      $id           = $this->input->post('id_bahan');
+      $nama_bahan   = $this->input->post('nama_bahan');
+      $spesifikasi  = $this->input->post('spesifikasi');
+      $kondisi      = $this->input->post('kondisi');
       $satuan_bahan = $this->input->post('satuan_bahan');
-      $stok = $this->input->post('stok');
-      $ukuran = $this->input->post('ukuran');
+      $stok         = $this->input->post('stok');
+      $ukuran       = $this->input->post('ukuran');
+      $file         = $this->input->post('file');
+      $ldkb         = $this->input->post('ldkb');
 
-      $data = array(
-        'nama_bahan'  => $nama_bahan,
-        'spesifikasi' => $spesifikasi,
-        'kondisi' => $kondisi,
-        'satuan_bahan' => $satuan_bahan,
-        'stok'        => $stok,
-        'ukuran'      => $ukuran
-      );
+      if ($_FILES['ldkb']['name'] != "") {
+        $config['upload_path']          = './upload/Bahan-LDKB';
+        $config['allowed_types']        = 'pdf';
+        $config['max_size']             = 2048;
+        
+        $this->load->library('upload', $config);
+        
+        if(!$this->upload->do_upload('ldkb')) {
+          echo "<script>alert('Gagal menyimpan data!');</script>";
+          redirect('admin/c_peminjaman/data_bahan', 'refresh');
+        } else {
+          $ldkb = $this->upload->data();
 
-      $where = array(
-        'id_bahan' => $id
-      );
+          $data = array(
+            'nama_bahan'    => $nama_bahan,
+            'spesifikasi'   => $spesifikasi,
+            'kondisi'       => $kondisi,
+            'satuan_bahan'  => $satuan_bahan,
+            'stok'          => $stok,
+            'ukuran'        => $ukuran,
+            'ldkb'          => 'upload/Bahan-LDKB/'.$ldkb['file_name']
+          );
+    
+          $where = array(
+            'id_bahan' => $id
+          );
+          
+          $old_data = $this->M_peminjaman->edit_alat_bahan($where, 'bahan')->row_array();
+          unlink($old_data['ldkb']);
+          $this->M_peminjaman->update_alat_bahan($where, $data, 'bahan');
+          echo "<script>alert('Data berhasil diperbaharui');</script>";
+          redirect('admin/c_peminjaman/data_bahan', 'refresh');
+        }
+      } else {
+        $data = array(
+          'nama_bahan'    => $nama_bahan,
+          'spesifikasi'   => $spesifikasi,
+          'kondisi'       => $kondisi,
+          'satuan_bahan'  => $satuan_bahan,
+          'stok'          => $stok,
+          'ukuran'        => $ukuran,
+        );
+  
+        $where = array(
+          'id_bahan' => $id
+        );
 
-      $this->M_peminjaman->update_alat_bahan($where, $data, 'bahan');
-      echo "<script>alert('Data berhasil diperbaharui');</script>";
-      redirect('admin/c_peminjaman/data_bahan', 'refresh');
+        $this->M_peminjaman->update_alat_bahan($where, $data, 'bahan');
+        echo "<script>alert('Data berhasil diperbaharui');</script>";
+        redirect('admin/c_peminjaman/data_bahan', 'refresh');
+      }
     }
   }
 

@@ -1,12 +1,11 @@
 <div class="container">
-<h3>Edit Data Bahan</h3>
-	</center>
+	<h3>Edit Data Bahan</h3>
 	<?php foreach($bahan as $u){ ?>
 	<div class="col-md-6" style="margin-top: 2%">
-	<form action="<?php echo base_url(). 'admin/c_peminjaman/update_bahan'; ?>" method="post">
+	<form action="<?php echo base_url()?>admin/c_peminjaman/update_bahan" method="post" enctype="multipart/form-data" runat="server">
 		<table class="table table-borderless">
 			<tr>
-				<td>Nama Bahan</td>
+				<td style="min-width: 150px">Nama Bahan</td>
 				<td>
 					<input type="hidden" name="id_bahan" value="<?php echo $u->id_bahan ?>" class="form-control">
 					<input type="text" name="nama_bahan" value="<?php echo $u->nama_bahan ?>" class="form-control" required>
@@ -29,6 +28,14 @@
 				<td>
 					<input type="text" name="stok" value="<?php echo $u->stok ?>" class="form-control" placeholder="Ketersediaan" title="Ketersediaan" data-toggle="tooltip" data-placement="right" required>
 					<input type="text" name="ukuran" value="<?php echo $u->ukuran ?>" class="form-control" placeholder="Ukuran" title="Ukuran Keseluruhan" data-toggle="tooltip" data-placement="right" required>
+				</td>
+			</tr>
+			<tr>
+				<td>LDKB</td>
+				<td>
+					<input type="hidden" name="file" value="<?php echo $u->ldkb ?>">
+					<input type="file" accept=".pdf" id="ldkb" name="ldkb" >
+					<p style="font-size: 12px; color: grey">*pilih file hanya jika akan merubah file LDKB, file tetap sama jika tidak memilih file baru</p>
 				</td>
 			</tr>
 			<tr>
