@@ -42,14 +42,20 @@
           ?>
           <tr>
             <td><?php echo $no++ ?></td>
-            <td><?php echo $u->nama ?></td>
-            <td><?php echo $u->noreg ?></td>
-            <td><?php echo $u->praktikum ?></td>
-            <td><?php echo $u->alat_pecah ?></td>
-            <td><?php echo $u->spesifikasi ?></td>
-            <td><?php echo $u->jumlah ?></td>
-            <td><?php echo $u->semester ?></td>
-            <td>
+            <td><?php echo $u['nama'] ?></td>
+            <td><?php echo $u['noreg'] ?></td>
+            <td><?php foreach($u['praktikum'] as $x){ echo $x."<br />"; }?></td>
+            <td><?php foreach($u['nama_alat_pecah'] as $x){ echo $x."<br />"; }?></td>
+            <td><?php foreach($u['jumlah'] as $x){ echo $x."<br />"; }?></td>
+            <td><?php foreach($u['spesifikasi'] as $x){ echo $x."<br />"; }?></td>
+            <td><?php echo $u['semester'] ?></td>
+            <td style="min-width: 90px">
+              <a href="<?php echo base_url();?>admin/c_praktikum/edit_alat_pecah/<?php print($u['id'])?>" title="Edit Data" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom">
+                <span class="glyphicon glyphicon-edit" />
+              </a>
+              <a href="<?php echo base_url();?>admin/c_praktikum/delete_alat_pecah/<?php print($u['id'])?>" title="Delete" onClick="return confirm('Apakah anda yakin akan menghapus data ini ?');" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom">
+                <span class="glyphicon glyphicon-trash" />
+              </a>
             </td>
           </tr>
           <?php } ?>

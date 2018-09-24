@@ -11,7 +11,7 @@ class C_peminjaman extends CI_Controller{
 
   public function peminjaman_alat(){
     $data = array(
-      'title' => 'Peminjaman Alat',
+      'title' => 'Peminjaman Alat Kimia',
       'alat'  => $this->m_peminjaman->data_alat(),
       'isi'   => 'mahasiswa/peminjaman/v_peminjaman_alat'
     );
@@ -21,7 +21,7 @@ class C_peminjaman extends CI_Controller{
 
   public function peminjaman_bahan(){
     $data = array(
-      'title' => 'Peminjaman Bahan',
+      'title' => 'Peminjaman Bahan Kimia',
       'bahan' => $this->m_peminjaman->data_bahan(),
       'isi'   => 'mahasiswa/peminjaman/v_peminjaman_bahan'
     );

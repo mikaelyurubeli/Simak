@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-xs-12">
-    <center><h3>Daftar Peminjaman Alat</h3></center><br/>
+    <center><h3>Daftar Peminjaman Alat Kimia</h3></center><br/>
 
     <?php
       if(empty($hasil)){

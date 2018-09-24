@@ -315,17 +315,115 @@ class M_praktikum extends CI_Model {
 	}
 
 	public function daftar_alat_pecah_smt($semester){
+		$tahun = $this->m_mahasiswa->get_angkatan_mahasiswa();
+		$where = array('daftar_alat_pecah.semester' => $semester, 'id_tahun' => $tahun[0]['id_tahun']);
 		$hasil_jadwal = $this->db->select('*')
-                  ->from('daftar_alat_pecah')
-				  ->where('semester', $semester)
+				  ->from('daftar_alat_pecah')
+				  ->join('mahasiswa', 'mahasiswa.noreg = daftar_alat_pecah.noreg')
+				  ->where($where)
                   ->get();
 
-		if($hasil_jadwal->num_rows() > 0){
-		foreach ($hasil_jadwal->result() as $data) {
-			$hasil[] = $data;
+		$dataLoop = $hasil_jadwal->result_array();
+		$dataAlat = "";
+		if($hasil_jadwal->num_rows() > 0) {
+			for ($i = 0; $i < count($hasil_jadwal->result_array()); $i++) {
+				$dataAlat = $this->get_alat_pecah($dataLoop[$i]['id']);
+				if ($dataLoop[$i]['id'] == $dataAlat[0]['id']) {
+					$dataLoop[$i]['praktikum'] = [];
+					$dataLoop[$i]['nama_alat_pecah'] = [];
+					$dataLoop[$i]['jumlah'] = [];
+					$dataLoop[$i]['spesifikasi'] = [];
+					if (count($dataAlat) > 0) {
+						for($u = 0; $u < count($dataAlat); $u++) {
+							array_push($dataLoop[$i]['praktikum'], $dataAlat[$u]['praktikum']);
+							array_push($dataLoop[$i]['nama_alat_pecah'], $dataAlat[$u]['nama_alat_pecah']);
+							array_push($dataLoop[$i]['jumlah'], $dataAlat[$u]['jumlah']);
+							array_push($dataLoop[$i]['spesifikasi'], $dataAlat[$u]['spesifikasi']);
+						}
+					}
+				}
+			}
 		}
 
-      		return $hasil;
-    	}
+		return $dataLoop;
+	}
+
+	public function add_daftar_alat_pecah($data, $table){
+		$this->db->insert($table, $data);
+		$query = $this->db->insert_id();
+		return $query;
+	}
+
+	private function get_alat_pecah($id) {
+		$where = array('id' => $id);
+		$query = $this->db->get_where('alat_pecah', $where);
+
+		return $query->result_array();
+	}
+
+	public function daftar_alat_pecah_join(){
+		$check = $this->db->from('daftar_alat_pecah')
+						  //->join('alat_pecah', 'alat_pecah.id = daftar_alat_pecah.id')
+						  ->get();
+
+		$dataLoop = $check->result_array();
+		$dataAlat = "";
+		if($check->num_rows() > 0) {
+			for ($i = 0; $i < count($dataLoop); $i++) {
+				$dataAlat = $this->get_alat_pecah($dataLoop[$i]['id']);
+				if ($dataLoop[$i]['id'] == $dataAlat[0]['id']) {
+					$dataLoop[$i]['id_alat_pecah'] = [];
+					$dataLoop[$i]['praktikum'] = [];
+					$dataLoop[$i]['nama_alat_pecah'] = [];
+					$dataLoop[$i]['jumlah'] = [];
+					$dataLoop[$i]['spesifikasi'] = [];
+					if (count($dataAlat) > 0) {
+						for($u = 0; $u < count($dataAlat); $u++) {
+							array_push($dataLoop[$i]['id_alat_pecah'], $dataAlat[$u]['id_alat_pecah']);
+							array_push($dataLoop[$i]['praktikum'], $dataAlat[$u]['praktikum']);
+							array_push($dataLoop[$i]['nama_alat_pecah'], $dataAlat[$u]['nama_alat_pecah']);
+							array_push($dataLoop[$i]['jumlah'], $dataAlat[$u]['jumlah']);
+							array_push($dataLoop[$i]['spesifikasi'], $dataAlat[$u]['spesifikasi']);
+						}
+					}
+				}
+			}
+		}
+
+		//jika data lebih dari 0
+		return $dataLoop;
+	}
+
+	public function edit_alat_pecah($id){
+		$check = $this->db->from('daftar_alat_pecah')
+						  ->where(array('id' => $id))
+						  ->get();
+
+		$dataLoop = $check->result_array();
+		$dataAlat = "";
+		if($check->num_rows() > 0) {
+			for ($i = 0; $i < count($check->result_array()); $i++) {
+				$dataAlat = $this->get_alat_pecah($dataLoop[$i]['id']);
+				if ($dataLoop[$i]['id'] == $dataAlat[0]['id']) {
+					$dataLoop[$i]['id_alat_pecah'] = [];
+					$dataLoop[$i]['praktikum'] = [];
+					$dataLoop[$i]['nama_alat_pecah'] = [];
+					$dataLoop[$i]['jumlah'] = [];
+					$dataLoop[$i]['spesifikasi'] = [];
+					if (count($dataAlat) > 0) {
+						for($u = 0; $u < count($dataAlat); $u++) {
+							array_push($dataLoop[$i]['id_alat_pecah'], $dataAlat[$u]['id_alat_pecah']);
+							array_push($dataLoop[$i]['praktikum'], $dataAlat[$u]['praktikum']);
+							array_push($dataLoop[$i]['nama_alat_pecah'], $dataAlat[$u]['nama_alat_pecah']);
+							array_push($dataLoop[$i]['jumlah'], $dataAlat[$u]['jumlah']);
+							array_push($dataLoop[$i]['spesifikasi'], $dataAlat[$u]['spesifikasi']);
+						}
+					}
+				}
+			}
+		}
+
+		//jika data lebih dari 0
+		return $dataLoop;
 	}
 }

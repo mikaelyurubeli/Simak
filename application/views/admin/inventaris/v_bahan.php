@@ -12,7 +12,7 @@
         <thead>
         <tr>
           <th style="width:10px">No</th>
-          <th>Nama Alat</th>
+          <th>Nama Bahan</th>
           <th>Spesifikasi</th>
           <th>Kondisi</th>
           <th>Persediaan</th>

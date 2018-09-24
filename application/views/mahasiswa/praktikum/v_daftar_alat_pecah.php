@@ -47,12 +47,12 @@
                 ?>
                     <tr>
                         <td><?php echo $no++ ?></td>
-                        <td><?php echo $u->nama ?></td>
-                        <td><?php echo $u->noreg ?></td>
-                        <td><?php echo $u->praktikum ?></td>
-                        <td><?php echo $u->alat_pecah ?></td>
-                        <td><?php echo $u->spesifikasi ?></td>
-                        <td><?php echo $u->jumlah ?></td>
+                        <td><?php echo $u['nama'] ?></td>
+                        <td><?php echo $u['noreg'] ?></td>
+                        <td><?php foreach($u['praktikum'] as $x){ echo $x."<br />"; }?></td>
+                        <td><?php foreach($u['nama_alat_pecah'] as $x){ echo $x."<br />"; }?></td>
+                        <td><?php foreach($u['spesifikasi'] as $x){ echo $x."<br />"; }?></td>
+                        <td><?php foreach($u['jumlah'] as $x){ echo $x."<br />"; }?></td>
                     </tr>
 	            <?php } ?>
                 </tbody>

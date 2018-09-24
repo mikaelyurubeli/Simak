@@ -317,7 +317,7 @@ class c_praktikum extends CI_controller{
     $data = array(
       'title' => 'Daftar Alat Pecah',
       'isi'   => 'admin/praktikum/v_daftar_alat_pecah',
-      'data'  => $this->m_praktikum->daftar_alat_pecah()->result()
+      'data'  => $this->m_praktikum->daftar_alat_pecah_join()
     );
 
     $this->load->view('admin/layout/wrapper', $data);
@@ -332,14 +332,25 @@ class c_praktikum extends CI_controller{
 
     $this->load->view('admin/layout/wrapper', $data);
   }
+    
+  public function edit_alat_pecah($id) {
+    $data = array(
+      'title' => 'Edit Daftar Alat Pecah',
+      'isi'   => 'admin/praktikum/v_edit_alat_pecah',
+      'semester' => $this->m_praktikum->semester(),
+      'data'  => $this->m_praktikum->edit_alat_pecah($id)
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
 
   public function do_add_daftar_alat_pecah(){
     $this->form_validation->set_rules('nama', 'nama', 'required');
     $this->form_validation->set_rules('noreg', 'noreg', 'required');
-    $this->form_validation->set_rules('praktikum', 'praktikum', 'required');
-    $this->form_validation->set_rules('alat_pecah', 'alat_pecah', 'required');
-    $this->form_validation->set_rules('spesifikasi', 'spesifikasi', 'required');
-    $this->form_validation->set_rules('jumlah', 'jumlah', 'required');
+    $this->form_validation->set_rules('praktikum[]', 'praktikum', 'required');
+    $this->form_validation->set_rules('alat_pecah[]', 'alat_pecah', 'required');
+    $this->form_validation->set_rules('spesifikasi[]', 'spesifikasi', 'required');
+    $this->form_validation->set_rules('jumlah[]', 'jumlah', 'required');
     $this->form_validation->set_rules('semester', 'semester', 'required');
 
     if($this->form_validation->run() == FALSE){
@@ -348,26 +359,110 @@ class c_praktikum extends CI_controller{
     } else {
       $nama         = $this->input->post('nama');
       $noreg        = $this->input->post('noreg');
-      $praktikum    = $this->input->post('praktikum');
-      $alat_pecah   = $this->input->post('alat_pecah');
-      $spesifikasi  = $this->input->post('spesifikasi');
-      $jumlah       = $this->input->post('jumlah');
-      $semester       = $this->input->post('semester');
+      $praktikum    = $this->input->post('praktikum[]');
+      $alat_pecah   = $this->input->post('alat_pecah[]');
+      $jumlah       = $this->input->post('jumlah[]');
+      $spesifikasi  = $this->input->post('spesifikasi[]');
+      $semester     = $this->input->post('semester');
 
       $data = array(
         'nama'        => $nama,
         'noreg'       => $noreg,
-        'praktikum'   => $praktikum,
-        'alat_pecah'  => $alat_pecah,
-        'spesifikasi' => $spesifikasi,
-        'jumlah'      => $jumlah,
         'semester'    => $semester,
       );
 
-      $this->m_praktikum->add_praktikum($data, 'daftar_alat_pecah');
+      $id = $this->m_praktikum->add_daftar_alat_pecah($data, 'daftar_alat_pecah');
+
+      for ($i=0; $i < count($jumlah); $i++) {
+        $data_alat_pecah = array(
+          'id'              => $id,
+          'praktikum'       => $praktikum[$i],
+          'nama_alat_pecah' => $alat_pecah[$i],
+          'jumlah'          => $jumlah[$i],
+          'spesifikasi'     => $spesifikasi[$i]
+        );
+
+        $this->m_praktikum->add_daftar_alat_pecah($data_alat_pecah, 'alat_pecah');
+      }
+
       echo "<script>alert('Berhasil menambah data!');</script>";
       redirect('admin/c_praktikum/daftar_alat_pecah', 'refresh');
     }
   }
 
+  public function update_alat_pecah(){
+    $this->form_validation->set_rules('nama', 'nama', 'required');
+    $this->form_validation->set_rules('noreg', 'noreg', 'required');
+    $this->form_validation->set_rules('praktikum[]', 'praktikum', 'required');
+    $this->form_validation->set_rules('nama_alat_pecah[]', 'nama_alat_pecah', 'required');
+    $this->form_validation->set_rules('spesifikasi[]', 'spesifikasi', 'required');
+    $this->form_validation->set_rules('jumlah[]', 'jumlah', 'required');
+    $this->form_validation->set_rules('semester', 'semester', 'required');
+
+    if($this->form_validation->run() == FALSE){
+      echo "<script>alert('Terdapat kesalahan pada data yang anda isi!')</script>";
+      redirect('admin/c_praktikum/daftar_alat_pecah', 'refresh');
+    } else {
+      $id               = $this->input->post('id');
+      $nama             = $this->input->post('nama');
+      $noreg            = $this->input->post('noreg');
+      $praktikum        = $this->input->post('praktikum[]');
+      $id_alat_pecah    = $this->input->post('id_alat_pecah[]');
+      $alat_pecah       = $this->input->post('nama_alat_pecah[]');
+      $jumlah           = $this->input->post('jumlah[]');
+      $spesifikasi      = $this->input->post('spesifikasi[]');
+      $add_praktikum   = $this->input->post('add_praktikum[]');
+      $add_alat_pecah   = $this->input->post('add_alat_pecah[]');
+      $add_jumlah       = $this->input->post('add_jumlah[]');
+      $add_spesifikasi  = $this->input->post('add_spesifikasi[]');
+      $semester         = $this->input->post('semester');
+
+      $data = array(
+        'id'          => $id,
+        'nama'        => $nama,
+        'noreg'       => $noreg,
+        'semester'    => $semester,
+      );
+      $wheres = array('id' => $id);
+      $this->m_praktikum->update_praktikum($wheres, $data, 'daftar_alat_pecah');
+
+      for ($i=0; $i < count($id_alat_pecah); $i++) {
+        $data_alat_pecah = array(
+          'id_alat_pecah'   => $id_alat_pecah[$i],
+          'praktikum'       => $praktikum[$i],
+          'nama_alat_pecah' => $alat_pecah[$i],
+          'jumlah'          => $jumlah[$i],
+          'spesifikasi'     => $spesifikasi[$i]
+        );
+        $where = array('id_alat_pecah' => $id_alat_pecah[$i]);
+        $this->m_praktikum->update_praktikum($where, $data_alat_pecah, 'alat_pecah');
+      }
+
+      if(count($add_alat_pecah) > 1){
+        for ($i=1; $i < count($add_alat_pecah); $i++) {
+          $data_add_alat_pecah = array(
+            'id'              => $id,
+            'praktikum'       => $add_praktikum[$i],
+            'nama_alat_pecah' => $add_alat_pecah[$i],
+            'jumlah'          => $add_jumlah[$i],
+            'spesifikasi'     => $add_spesifikasi[$i]
+          );
+
+          $this->m_praktikum->add_daftar_alat_pecah($data_add_alat_pecah, 'alat_pecah');
+        }
+      }
+
+      echo "<script>alert('Berhasil merubah data!');</script>";
+      redirect('admin/c_praktikum/daftar_alat_pecah', 'refresh');
+    }
+  }
+
+  public function delete_alat_pecah($id){
+    $where = array('id' => $id);
+
+    $this->m_praktikum->delete_praktikum($where, 'alat_pecah');
+    $this->m_praktikum->delete_praktikum($where, 'daftar_alat_pecah');
+    echo "<script>alert('Data berhasil dihapus!');</script>";
+    redirect('admin/c_praktikum/daftar_alat_pecah', 'refresh');
+  }
 }

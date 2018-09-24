@@ -1,5 +1,5 @@
 <div class="container-fluid mains">
-	<h3>Peminjaman alat:</h3>
+	<h3>Peminjaman alat kimia:</h3>
 
 	<div class="container margs">
 	<form action="<?php echo base_url();?>mahasiswa/C_peminjaman/do_peminjaman_alat" enctype="multipart/form-data" method="post" target="_blank">

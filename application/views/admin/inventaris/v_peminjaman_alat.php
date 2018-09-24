@@ -1,7 +1,7 @@
 <div class="container">
 <div class="row">
     <div class="col-md-12 col-xs-12">
-      <legend><h3>Daftar Peminjaman Alat</h3></legend><br/>
+      <legend><h3>Daftar Peminjaman Alat Kimia</h3></legend><br/>
     </div>
   </div>
   <?php

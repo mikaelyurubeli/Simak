@@ -35,7 +35,7 @@
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Peminjaman<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="<?php echo base_url();?>kalab/c_peminjaman/peminjaman_alat">Peminjaman Alat</a></li>
+          <li><a href="<?php echo base_url();?>kalab/c_peminjaman/peminjaman_alat">Peminjaman Alat Kimia</a></li>
           <li><a href="<?php echo base_url();?>kalab/c_peminjaman/peminjaman_bahan">Pemakaian Bahan Kimia</a></li>
         </ul>
       </li>
