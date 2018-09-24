@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-xs-12">
-      <legend><h3>Daftar Alat Kimia</h3></legend>
+      <legend><h3>Daftar Alat Kaca</h3></legend>
       <?php echo anchor('admin/c_peminjaman/alat','Tambah Alat', array('class' => 'btn btn-success btn-sm', 'style' => 'margin-bottom: 20px; float: right')); ?>
     </div>
   </div>

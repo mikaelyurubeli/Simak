@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>Tambah Bahan</h3>
+  <h3>Tambah Bahan Kimia</h3>
   <br />
 
   <div class="col-md-5">

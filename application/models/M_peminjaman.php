@@ -14,6 +14,13 @@ class M_peminjaman extends CI_Model{
     $query = $this->db->get();
     return $query->result();
   }
+  
+  public function data_alat_instrumen(){
+    $this->db->from('alat_instrumen');
+    $this->db->order_by('nama_alat asc');
+    $query = $this->db->get();
+    return $query->result();
+  }
 
   public function data_bahan(){
     $this->db->from('bahan');

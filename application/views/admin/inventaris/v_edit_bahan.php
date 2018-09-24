@@ -1,5 +1,5 @@
 <div class="container">
-	<h3>Edit Data Bahan</h3>
+	<h3>Edit Data Bahan Kimia</h3>
 	<?php foreach($bahan as $u){ ?>
 	<div class="col-md-6" style="margin-top: 2%">
 	<form action="<?php echo base_url()?>admin/c_peminjaman/update_bahan" method="post" enctype="multipart/form-data" runat="server">

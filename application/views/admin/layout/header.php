@@ -50,8 +50,9 @@
           <li class="dropdown dropdown-submenu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Data</a>
             <ul class="dropdown-menu">
-                <li><a href="<?php echo base_url(); ?>admin/C_peminjaman/data_alat">Alat Kimia</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/C_peminjaman/data_alat">Alat Kaca</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/C_peminjaman/data_bahan">Bahan Kimia</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/C_peminjaman/data_alat_instrumen">Alat Instrumen</a></li>
             </ul>
           </li>
         </ul>
