@@ -53,4 +53,4 @@
 
 <body>
 
-<div id="wrapper" class="container alls">
+<div id="wrapper" class="container alls" style="min-width: 1024px">

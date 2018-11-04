@@ -63,4 +63,5 @@
     $( "#datepicker" ).datepicker({dateFormat: "d MM yy"});
   } );
 
+	$(".table-datatable").DataTable();
 </script>

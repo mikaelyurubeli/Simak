@@ -8,6 +8,7 @@ class M_penelitian extends CI_Model{
     return $query;
   }
 
+  //ambil data untuk tampilan admin
   public function penelitian(){
     $query = $this->db->from('penelitian')
                       ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian.id_mahasiswa')
@@ -55,7 +56,16 @@ class M_penelitian extends CI_Model{
 
     return $query->result();
   }
+      
+  public function perizinan_lembur(){
+    $query = $this->db->from('penelitian_lembur')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_lembur.id_mahasiswa')
+                      ->get();
 
+    return $query->result();
+  }
+
+  //untuk ambil data tampilan mahasiswa
   public function data_penelitian($id){
     $query = $this->db->from('penelitian')
                       ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian.id_mahasiswa')
@@ -105,6 +115,15 @@ class M_penelitian extends CI_Model{
     $query = $this->db->from('penelitian_poten')
                       ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_poten.id_mahasiswa')
                       ->where(array('penelitian_poten.id_penelitian' =>$id))
+                      ->get();
+
+    return $query->row_array();
+  }
+    
+  public function data_perizinan_lembur($id){
+    $query = $this->db->from('penelitian_lembur')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_lembur.id_mahasiswa')
+                      ->where(array('penelitian_lembur.id_penelitian' =>$id))
                       ->get();
 
     return $query->row_array();
