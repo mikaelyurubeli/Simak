@@ -25,6 +25,8 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script>
+
+	// comment
 	function doconfirm()
 	{
 			job=confirm("Apakah anda yakin akan menghapus ini?");
