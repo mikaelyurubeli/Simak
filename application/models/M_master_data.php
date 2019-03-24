@@ -22,10 +22,23 @@ class M_master_data extends CI_Model{
 		return $query->result();
 	}
 
+	public function data_nama_praktikum() {
+		$this->db->from('nama_praktikum');
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
 	public function get_nama_dosen($id) {
 		$query = $this->db->from('dosen')
 											->where(array('id_dosen' => $id))
 											->get();
+
+		return $query->result_array();
+	}
+
+	public function get_nama_praktikum($id) {
+		$query = $this->db->from('nama_praktikum')->where(array('id_nama_prak' => $id))->get();
 
 		return $query->result_array();
 	}

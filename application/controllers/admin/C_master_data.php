@@ -181,7 +181,7 @@ class C_master_data extends CI_Controller{
 
     $this->load->view('admin/layout/wrapper', $data);
   }
-  
+
   public function do_add_semester(){
     $this->form_validation->set_rules('semester', 'semester', 'trim|required');
   
@@ -207,6 +207,104 @@ class C_master_data extends CI_Controller{
         redirect('admin/c_master_data/view_semester', 'refresh');
       }
     }
+  }
+  
+  public function view_nama_praktikum() {
+    $data = array (
+      'title' => 'Nama Praktikum',
+      'data' => $this->m_master_data->data_nama_praktikum(),
+      'isi' => 'admin/master_data/v_nama_praktikum'
+    );
+
+    $this->load->view('/admin/layout/wrapper', $data);
+  }
+
+  public function tambah_nama_praktikum() {
+    $data = array (
+      'title' => 'Tambah Nama Praktikum',
+      'isi'   => 'admin/master_data/v_add_nama_praktikum' 
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function do_add_nama_praktikum(){
+    $this->form_validation->set_rules('nama_praktikum', 'nama_praktikum', 'trim|required');
+  
+    if($this->form_validation->run() == FALSE){
+      echo "<script>alert('Gagal menambah data!');</script>";
+      redirect('admin/c_master_data/tambah_nama_praktikum');
+    } else {
+      $nama_praktikum = $this->input->post('nama_praktikum');
+
+      $data = array(
+        'nama_praktikum'  => $nama_praktikum,
+      );
+
+      $where = array('nama_praktikum' => $nama_praktikum);
+      $check = $this->m_master_data->check_duplicate($where, 'nama_praktikum');
+
+      if (count($check) > 0) {
+        echo "<script>alert('Nama Praktikum: {$nama_praktikum} sudah dibuat!');</script>";
+        redirect('admin/c_master_data/tambah_nama_praktikum', 'refresh');
+      } else {
+        $this->m_master_data->add_dosen($data, 'nama_praktikum');
+        echo "<script>alert('Berhasil menambah data!');</script>";
+        redirect('admin/c_master_data/view_nama_praktikum', 'refresh');
+      }
+    }
+  }
+    
+	public function edit_nama_praktikum($id){
+    $where = array('id_nama_prak' => $id);
+    $data = array(
+      'title' => 'Edit Nama Praktikum',
+      'isi'   => 'admin/master_data/v_edit_nama_praktikum',
+      'data' => $this->m_master_data->edit($where, 'nama_praktikum')->result()
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function do_update_nama_praktikum(){
+    $this->form_validation->set_rules('id_nama_prak', 'id_nama_prak', 'required');
+    $this->form_validation->set_rules('nama_praktikum', 'nama_praktikum', 'required');
+
+    if($this->form_validation->run() == FALSE){
+      echo "<script>alert('Gagal merubah data!');</script>";
+      redirect('admin/c_master_data/view_nama_praktikum', 'refresh');
+    } else {
+      $id_nama_prak = $this->input->post('id_nama_prak');
+      $nama_praktikum     = $this->input->post('nama_praktikum');
+
+      $data = array(
+        'id_nama_prak'  => $id_nama_prak,
+        'nama_praktikum' => $nama_praktikum
+      );
+
+      $where = array(
+        'id_nama_prak' => $id_nama_prak
+      );
+
+      $this->m_master_data->update($where, $data, 'nama_praktikum');
+      echo "<script>alert('Data Berhasil diperbaharui!');</script>";
+      redirect('admin/c_master_data/view_nama_praktikum', 'refresh');
+    }
+  }
+  
+  public function do_delete_nama_praktikum($id){
+    $data = $this->m_master_data->get_nama_praktikum($id);
+    $where = array('nama_praktikum' => $data[0]['nama_praktikum']);
+    $where_delete = array('id_nama_prak' => $id);
+
+    $check = $this->m_master_data->is_had_child($where, "praktikum");
+    if (count($check) > 0) {
+      echo "<script>alert('Nama praktikum ini tidak dapat dihapus! \\nNama praktikum ini sudah digunakan \\nUntuk menghapus nama praktikum ini, silahkan hubungi administrator!');</script>";
+    } else {
+      $this->m_user->delete_user($where_delete, 'nama_praktikum');
+      echo "<script>alert('Data berhasil dihapus!');</script>";
+    }
+    redirect('admin/c_master_data/view_nama_praktikum', 'refresh');
   }
 
 }
