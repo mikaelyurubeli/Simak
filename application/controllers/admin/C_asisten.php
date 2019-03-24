@@ -48,6 +48,8 @@ class C_asisten extends CI_Controller{
     $this->form_validation->set_rules('pilihan_praktikum2', 'pilihan_praktikum2', 'trim|required');
     $this->form_validation->set_rules('pilihan_praktikum3', 'pilihan_praktikum3', 'trim|required');
     $this->form_validation->set_rules('jam_kosong', 'jam_kosong', 'trim|required');
+    $this->form_validation->set_rules('jam_kosong_2', 'jam_kosong_2', 'trim|required');
+    $this->form_validation->set_rules('jam_kosong_3', 'jam_kosong_3', 'trim|required');
 
     if($this->form_validation->run() == FALSE){
       redirect('admin/c_asisten/edit_asisten');
@@ -57,12 +59,16 @@ class C_asisten extends CI_Controller{
       $pilihan_praktikum2 = $this->input->post('pilihan_praktikum2');
       $pilihan_praktikum3 = $this->input->post('pilihan_praktikum3');
       $jam_kosong = $this->input->post('jam_kosong');
+      $jam_kosong_2 = $this->input->post('jam_kosong_2');
+      $jam_kosong_3 = $this->input->post('jam_kosong_3');
 
       $data = array(
         'pilihan_praktikum1'  => $pilihan_praktikum1,
         'pilihan_praktikum2'  => $pilihan_praktikum2,
         'pilihan_praktikum3'  => $pilihan_praktikum3,
-        'jam_kosong'  => $jam_kosong
+        'jam_kosong'  => $jam_kosong,
+        'jam_kosong_2'  => $jam_kosong_2,
+        'jam_kosong_3'  => $jam_kosong_3,
       );
 
       $where = array(

@@ -52,6 +52,8 @@ class C_asisten extends CI_Controller{
       $nilai          = $this->input->post('nilai_praktikum');
       $semester       = $this->input->post('semester');
       $jam_kosong     = $this->input->post('jam_kosong');
+      $jam_kosong_2   = $this->input->post('jam_kosong_2');
+      $jam_kosong_3   = $this->input->post('jam_kosong_3');
       $id             = $this->m_mahasiswa->mahasiswa_peminjaman()->row_array();
       $id_mahasiswa   = $id['id_mahasiswa'];
       $semester_pk    = $data_master['semester'];
@@ -65,8 +67,8 @@ class C_asisten extends CI_Controller{
       if (count($check) == 1 && $check_smt == true) {
         echo "<script>alert('Anda sudah melakukan pendaftaran untuk semester ini, harap hubungi administrator laboratorium jika anda ingin merubah data pendaftaran!');</script>";
         redirect('mahasiswa/c_asisten', 'refresh');
-      } else if(count($check) > 1){
-        echo "<script>alert('Anda sudah melakukan pendaftaran asisten sebanyak 2 kali, harap hubungi administrator laboratorium jika anda ingin merubah data pendaftaran!');</script>";
+      } else if(count($check) > 2 ){
+        echo "<script>alert('Anda sudah melakukan pendaftaran asisten sebanyak 3 kali, harap hubungi administrator laboratorium jika anda ingin merubah data pendaftaran!');</script>";
         redirect('mahasiswa/c_asisten', 'refresh');
       } else {
         $data = array(
@@ -75,6 +77,8 @@ class C_asisten extends CI_Controller{
           'pilihan_praktikum3' => $pilihan3,
           'nilai_kimia_organik'=> $nilai,
           'jam_kosong'         => $jam_kosong,
+          'jam_kosong_2'       => $jam_kosong_2,
+          'jam_kosong_3'       => $jam_kosong_3,
           'semester'           => $semester,
           'semester_pk'        => $semester_pk,
           'tahun_akademik'     => $tahun_akademik,

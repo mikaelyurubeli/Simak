@@ -80,6 +80,7 @@
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<select class="form-control" name="semester" id="semester" required>
+							<option value="6">6</option>
 							<option value="7">7</option>
 							<option value="8">8</option>
 							<option value="9">9</option>
@@ -94,10 +95,64 @@
 			<div class="form-group">
 				<div class="row colbox">
 					<div class="col-md-2 col-sm-2">
-						<label for="jam_kos" class="control-label">Jam Kosong</label>
+						<label for="jam_kosong" class="control-label">Jam Kosong 1</label>
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<select class="form-control" name="jam_kosong" id="jam_kosong" required>
+							<option value="Senin I (08:00-12:00)">Senin I (08:00-12:00)</option>
+							<option value="Senin II (13:00:16:00)">Senin II (13:00-16:00)</option>
+							<option value="Senin (full day)">Senin (full day)</option>
+							<option value="Selasa I (08:00-12:00)">Selasa I (08:00-12:00)</option>
+							<option value="Selasa II (13:00:16:00)">Selasa II (13:00-16:00)</option>
+							<option value="Selasa (full day)">Selasa (full day)</option>
+							<option value="Rabu I (08:00-12:00)">Rabu I (08:00-12:00)</option>
+							<option value="Rabu II (13:00:16:00)">Rabu II (13:00-16:00)</option>
+							<option value="Rabu (full day)">Rabu (full day)</option>
+							<option value="Kamis I (08:00-12:00)">Kamis I (08:00-12:00)</option>
+							<option value="Kamis II (13:00:16:00)">Kamis II (13:00-16:00)</option>
+							<option value="Kamis (full day)">Kamis (full day)</option>
+							<option value="Jumat I (08:00-12:00)">Jumat I (08:00-12:00)</option>
+							<option value="Jumat II (13:00:16:00)">Jumat II (13:00-16:00)</option>
+							<option value="Jumat (full day)">Jumat (full day)</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row colbox">
+					<div class="col-md-2 col-sm-2">
+						<label for="jam_kosong_2" class="control-label">Jam Kosong 2</label>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<select class="form-control" name="jam_kosong_2" id="jam_kosong_2" required>
+							<option value="-">None</option>
+							<option value="Senin I (08:00-12:00)">Senin I (08:00-12:00)</option>
+							<option value="Senin II (13:00:16:00)">Senin II (13:00-16:00)</option>
+							<option value="Senin (full day)">Senin (full day)</option>
+							<option value="Selasa I (08:00-12:00)">Selasa I (08:00-12:00)</option>
+							<option value="Selasa II (13:00:16:00)">Selasa II (13:00-16:00)</option>
+							<option value="Selasa (full day)">Selasa (full day)</option>
+							<option value="Rabu I (08:00-12:00)">Rabu I (08:00-12:00)</option>
+							<option value="Rabu II (13:00:16:00)">Rabu II (13:00-16:00)</option>
+							<option value="Rabu (full day)">Rabu (full day)</option>
+							<option value="Kamis I (08:00-12:00)">Kamis I (08:00-12:00)</option>
+							<option value="Kamis II (13:00:16:00)">Kamis II (13:00-16:00)</option>
+							<option value="Kamis (full day)">Kamis (full day)</option>
+							<option value="Jumat I (08:00-12:00)">Jumat I (08:00-12:00)</option>
+							<option value="Jumat II (13:00:16:00)">Jumat II (13:00-16:00)</option>
+							<option value="Jumat (full day)">Jumat (full day)</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row colbox">
+					<div class="col-md-2 col-sm-2">
+						<label for="jam_kosong_3" class="control-label">Jam Kosong 3</label>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<select class="form-control" name="jam_kosong_3" id="jam_kosong_3" required>
+							<option value="-">None</option>
 							<option value="Senin I (08:00-12:00)">Senin I (08:00-12:00)</option>
 							<option value="Senin II (13:00:16:00)">Senin II (13:00-16:00)</option>
 							<option value="Senin (full day)">Senin (full day)</option>
