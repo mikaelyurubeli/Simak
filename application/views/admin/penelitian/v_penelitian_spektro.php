@@ -48,6 +48,7 @@
             <td>
               <a href="<?php echo base_url();?>admin/c_penelitian/do_delete_penelitian_spektro/<?php print($u->id_penelitian);?>" onClick="return doconfirm();" title="Delete Data" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom">
                 <span class="glyphicon glyphicon-trash" />
+              </a>
             </td>
           </tr>
           <?php } ?>

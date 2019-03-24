@@ -3,15 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_login extends CI_Controller {
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
         $this->load->model('m_login');
         $this->load->model('m_mahasiswa');
     }
 
-    function index()
-    {
+    function index() {
         $session = $this->session->userdata('isLogin');
 
         if ($session == false) {
@@ -21,87 +19,83 @@ class C_login extends CI_Controller {
         }
     }
 
-  function do_login()
-  {
-      $username = $this->input->post('username');
-      $password = $this->input->post('password');
-      $cek = $this->m_login->cek_user($username, md5($password));
+    function do_login() {
+        $username   = $this->input->post('username');
+        $password   = $this->input->post('password');
+        $cek        = $this->m_login->cek_user($username, md5($password));
 
-      if (count($cek) == 1) {
-          foreach ($cek as $cek) {
-              $username = $cek['username'];
-              $password = $cek['password'];
-              $level = $cek['level'];
-              $status = $cek['status'];
-              $id_user = $cek['id_user'];
-          }
+        if (count($cek) == 1) {
+            foreach ($cek as $cek) {
+                $username   = $cek['username'];
+                $password   = $cek['password'];
+                $level      = $cek['level'];
+                $status     = $cek['status'];
+                $id_user    = $cek['id_user'];
+            }
 
-          $this->session->set_userdata(array(
-              'isLogin' => TRUE,
-              'username' => $username,
-              'password' => $password,
-              'level' => $level,
-              'status' => $status,
-              'id_user' => $id_user));
+            $this->session->set_userdata(array(
+                'isLogin'     => TRUE,
+                'username'    => $username,
+                'password'    => $password,
+                'level'       => $level,
+                'status'      => $status,
+                'id_user'     => $id_user));
 
-          redirect('c_login/dashboard');
+            redirect('c_login/dashboard');
 
-      } else {
-          echo "<script>alert('Username atau Password salah. Login Gagal!')</script>";
-          redirect('c_login', 'refresh');
-      }
-  }
+        } else {
+            echo "<script>alert('Username atau Password salah. Login Gagal!')</script>";
+            redirect('c_login', 'refresh');
+        }
+    }
 
-    function dashboard()
-    {
-        $data = $this->session->all_userdata();
-        $statuss = $this->session->userdata('isLogin');
-        $status = $this->session->userdata('status');
-        $level = $this->session->userdata('level');
-        $id_user = $this->session->userdata('id_user');
+    function dashboard() {
+        $data       = $this->session->all_userdata();
+        $statuss    = $this->session->userdata('isLogin');
+        $status     = $this->session->userdata('status');
+        $level      = $this->session->userdata('level');
+        $id_user    = $this->session->userdata('id_user');
 
         if ($statuss == true) {
             if ($level == 'admin') {
-                $data['level'] = 'Administrator';
+                $data['level']  = 'Administrator';
                 $data['status'] = 'Active';
                 $data = array(
                     'title' => 'Adm-Beranda',
                     'isi'   => 'admin/beranda'
                 );
+
                 $this->load->view('admin/layout/wrapper', $data);
 
-            } elseif ($level == 'kalab'){
-                $data['level'] = 'Kepala Lab';
+            } else if ($level == 'kalab') {
+                $data['level']  = 'Kepala Lab';
                 $data['status'] = 'Active';
                 $data = array(
                     'title' => 'Kalab-Beranda',
                     'isi'   => 'admin/beranda'
                 );
+
                 $this->load->view('kalab/layout/wrapper', $data);
 
-            } elseif ($level == 'mahasiswa'){
+            } else if ($level == 'mahasiswa') {
                 if($status == '1'){
-                  $data['level'] = 'Mahasiswa';
-                  $data['status'] = 'Active';
-                  $data['tahun_angkatan'] = $this->m_mahasiswa->tahun();
-                  $data['id_user'] = $id_user;
-                  /*$data = array(
-                    'title' => 'Data Mahasiswa',
-                    'isi'   => 'mahasiswa/v_biodata'
-                  );
+                    // Ini kalau mahasiswa belum mengisi data diri
+                    $data['level']          = 'Mahasiswa';
+                    $data['status']         = 'Active';
+                    $data['tahun_angkatan'] = $this->m_mahasiswa->tahun();
+                    $data['id_user']        = $id_user;
 
-                  $this->load->view('mahasiswa/layout/wrapper', $data);
-                  */
-                  $this->load->view('mahasiswa/v_biodata', $data);
+                    $this->load->view('mahasiswa/v_biodata', $data);
                 } else {
-                  $data['level'] = 'Mahasiswa';
-                  $data['status'] = 'Active';
-                  $data = array(
-                      'title' => 'Mhs-Beranda',
-                      'isi'   => 'mahasiswa/beranda'
-                  );
+                    // Ini kondisi kalau mahasiswa sudah mengisi data diri
+                    $data['level']  = 'Mahasiswa';
+                    $data['status'] = 'Active';
+                    $data = array(
+                        'title' => 'Mhs-Beranda',
+                        'isi'   => 'mahasiswa/beranda'
+                    );
 
-                  $this->load->view('mahasiswa/layout/wrapper', $data);
+                    $this->load->view('mahasiswa/layout/wrapper', $data);
                 }
 
             }
@@ -111,8 +105,7 @@ class C_login extends CI_Controller {
         }
     }
 
-    function logout()
-    {
+    function logout() {
         $this->session->sess_destroy();
         redirect('c_login', 'refresh');
     }

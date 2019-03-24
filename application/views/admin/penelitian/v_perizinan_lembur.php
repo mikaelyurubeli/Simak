@@ -13,8 +13,10 @@
             <th style="width: 10px !important">No</th>
             <th>No Registrasi</th>
             <th>Nama Mahasiswa</th>
-            <th>Instansi</th>
+            <!-- <th>Instansi</th> -->
             <th>Judul Penelitian</th>
+            <th>Pembimbing 1</th>
+            <th>Pembimbing 2</th>
             <th>Tanggal Penelitian</th>
             <th>Waktu Penggunaan</th>
             <th>Aksi</th>
@@ -26,6 +28,8 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th> 
+            <!-- <th></th>  -->
             <th></th> 
             <th></th> 
             <th></th> 
@@ -41,13 +45,22 @@
             <td><?php echo $no++ ?></td>
             <td><?php echo $u->noreg ?></td>
             <td><?php echo $u->nama ?></td>
-            <td><?php echo $u->instansi ?></td>
+            <!-- <td><?php echo $u->instansi ?></td> -->
             <td style="min-width: 200px"><?php echo $u->judul_penelitian ?></td>
+            <td><?php echo $u->pembimbing_1 ?></td>
+            <td><?php echo $u->pembimbing_2 ?></td>
             <td><?php echo $u->tgl_buat_surat ?></td>
             <td style="max-width: 200px"><?php echo $u->jam_mulai.'-'.$u->jam_selesai.' WIB' ?></td>
             <td>
+              <a href="<?php echo base_url();?>admin/c_penelitian/edit_perizinan_lembur/<?php print($u->id_penelitian);?>" title="Edit Data" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom">
+                <span class="glyphicon glyphicon-edit" />
+              </a>
+              <a href="<?php echo base_url();?>mahasiswa/c_penelitian/cetak_form_perizinan_lembur/<?php print($u->id_penelitian);?>" title="Print Data" class="btn btn-success" data-toggle="tooltip" data-placement="bottom">
+                <span class="glyphicon glyphicon-print" />
+              </a>
               <a href="<?php echo base_url();?>admin/c_penelitian/do_delete_perizinan_lembur/<?php print($u->id_penelitian);?>" onClick="return doconfirm();" title="Delete Data" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom">
                 <span class="glyphicon glyphicon-trash" />
+              </a>
             </td>
           </tr>
           <?php } ?>

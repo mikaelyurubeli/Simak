@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<!--<link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/bootstrap.min.css">-->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/formwizard.css">
 

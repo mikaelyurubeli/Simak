@@ -66,6 +66,7 @@
           <li><a href="<?php echo base_url();?>admin/c_master_data">Master Data</a></li>
           <li><a href="<?php echo base_url();?>admin/c_master_data/dosen">Dosen</a></li>
           <li><a href="<?php echo base_url();?>admin/c_master_data/view_semester">Semester</a></li>
+          <li><a href="<?php echo base_url();?>admin/c_master_data/view_nama_praktikum">Nama Praktikum</a></li>
         </ul>
       </li>
       <li><a href="<?php echo base_url();?>c_login/logout">Logout</a></li>

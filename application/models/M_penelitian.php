@@ -75,6 +75,15 @@ class M_penelitian extends CI_Model{
     return $query->row_array();
   }
 
+  public function data_penelitian_byid($id){
+    $query = $this->db->from('penelitian')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian.id_mahasiswa')
+                      ->where(array('penelitian.id_penelitian' =>$id))
+                      ->get();
+
+    return $query;
+  }
+
   public function data_penelitian_aas($id){
     $query = $this->db->from('penelitian_aas')
                       ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_aas.id_mahasiswa')
@@ -127,6 +136,15 @@ class M_penelitian extends CI_Model{
                       ->get();
 
     return $query->row_array();
+  }
+
+  public function data_perizinan_lembur_byid($id){
+    $query = $this->db->from('penelitian_lembur')
+                      ->join('mahasiswa', 'mahasiswa.id_mahasiswa = penelitian_lembur.id_mahasiswa')
+                      ->where(array('penelitian_lembur.id_penelitian' =>$id))
+                      ->get();
+
+    return $query;
   }
 
   public function get_nip($where){
