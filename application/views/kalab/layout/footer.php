@@ -13,6 +13,10 @@
             $(this).parent().siblings().removeClass('open');
             $(this).parent().toggleClass('open');
         });
+        
+        $('[data-toggle="tooltip"]').tooltip(); 
+        
+        $(".table-datatable").DataTable();
     });
 })(jQuery);
 </script>

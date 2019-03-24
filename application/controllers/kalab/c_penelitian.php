@@ -12,7 +12,7 @@ class c_penelitian extends CI_Controller{
     $data = array(
       'title'	=> 'Penelitian',
       'hasil'  => $this->m_penelitian->penelitian(),
-      'isi'		=> 'admin/penelitian/v_penelitian'
+      'isi'		=> 'kalab/v_penelitian'
     );
 
     $this->load->view('kalab/layout/wrapper', $data);

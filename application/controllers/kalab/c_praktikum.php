@@ -10,10 +10,11 @@ class c_praktikum extends CI_Controller{
   }
 
   public function jadwal_praktikum(){
+    $semester = null;
     $data = array(
       'title' => 'Jadwal Praktikum',
       'isi'   => 'kalab/v_praktikum',
-      'hasil' => $this->m_praktikum->jadwal_praktikum()
+      'hasil' => $this->m_praktikum->jadwal_praktikum($semester)
     );
 
     $this->load->view('kalab/layout/wrapper', $data);
