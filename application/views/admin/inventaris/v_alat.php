@@ -16,11 +16,13 @@
             <th>Spesifikasi</th>
             <th>Kondisi</th>
             <th>Jumlah</th>
+            <th>SOP/IK</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -40,6 +42,9 @@
             <td><?php echo $u->spesifikasi ?></td>
             <td><?php echo $u->kondisi ?></td>
             <td><?php echo $u->jumlah ?></td>
+            <td>
+              <?php if ($u->sop != null) { ?><a href="<?php echo base_url();?><?php echo $u->sop ?>" target="_self">Download file SOP/IK</a><?php } else { ?> Tidak ada file <?php } ?>
+            </td>
             <td>
               <a href="<?php echo base_url();?>admin/c_peminjaman/edit_alat/<?php print($u->id_alat);?>" title="Edit Data" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom">
                 <span class="glyphicon glyphicon-edit" />

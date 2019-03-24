@@ -3,7 +3,7 @@
 	</center>
 	<?php foreach($alat as $u){ ?>
 	<div class="col-md-5" style="margin-top: 2%">
-	<form action="<?php echo base_url(). 'admin/c_peminjaman/update_alat'; ?>" method="post">
+	<form action="<?php echo base_url(). 'admin/c_peminjaman/update_alat'; ?>" method="post" enctype="multipart/form-data" runat="server">
 		<table class="table table-borderless">
 			<tr>
 				<td style="min-width: 150px">Nama Alat</td>
@@ -23,6 +23,13 @@
 			<tr>
 				<td>Jumlah Alat</td>
 				<td><input type="text" name="jumlah" value="<?php echo $u->jumlah ?>" class="form-control" required></td>
+			</tr>
+			<tr>
+				<td>SOP/IK</td>
+				<td>
+					<input type="file" accept=".pdf" id="sop" name="sop" >
+					<p style="font-size: 12px; color: grey">*pilih file hanya jika akan merubah file SOP/IK, file tetap sama jika tidak memilih file baru</p>
+				</td>
 			</tr>
 			<tr>
 				<td></td>

@@ -87,10 +87,24 @@ $this->fpdf->Cell(5,1,($mahasiswa['tahun_angkatan'].'/'.$daftar['semester']),0,0
 $this->fpdf->Ln();
 
 $this->fpdf->SetFont('Times','B', 12);
-$this->fpdf->Cell(5 , 1, 'JAM KOSONG' , 0,'LR', 'L');
+$this->fpdf->Cell(5 , 1, 'JAM KOSONG 1' , 0,'LR', 'L');
 $this->fpdf->Cell(1,1,':',0,0,'C');
 $this->fpdf->SetFont('Times','', 12);
 $this->fpdf->Cell(5,1,($daftar['jam_kosong']),0,0,'L');
+$this->fpdf->Ln();
+
+$this->fpdf->SetFont('Times','B', 12);
+$this->fpdf->Cell(5 , 1, 'JAM KOSONG 2' , 0,'LR', 'L');
+$this->fpdf->Cell(1,1,':',0,0,'C');
+$this->fpdf->SetFont('Times','', 12);
+$this->fpdf->Cell(5,1,($daftar['jam_kosong_2']),0,0,'L');
+$this->fpdf->Ln();
+
+$this->fpdf->SetFont('Times','B', 12);
+$this->fpdf->Cell(5 , 1, 'JAM KOSONG 3' , 0,'LR', 'L');
+$this->fpdf->Cell(1,1,':',0,0,'C');
+$this->fpdf->SetFont('Times','', 12);
+$this->fpdf->Cell(5,1,($daftar['jam_kosong_3']),0,0,'L');
 $this->fpdf->Ln();
 
 $this->fpdf->SetFont('Times','B', 12);

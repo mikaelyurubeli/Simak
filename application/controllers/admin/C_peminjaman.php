@@ -100,17 +100,45 @@ class C_peminjaman extends CI_Controller{
       $spesifikasi  = $this->input->post('spesifikasi');
       $jumlah       = $this->input->post('jumlah');
       $kondisi      = $this->input->post('kondisi');
+      $sop          = $this->input->post('sop');
 
-      $data = array(
-        'nama_alat'   => $nama_alat,
-        'spesifikasi' => $spesifikasi,
-        'jumlah'      => $jumlah,
-        'kondisi'     => $kondisi
-      );
+      if ($_FILES['sop']['name'] != "") {
+        $config['upload_path']          = './upload/Alat-Kaca-SOP';
+        $config['allowed_types']        = 'pdf';
+        $config['max_size']             = 2048;
+        
+        $this->load->library('upload', $config);
 
-      $this->M_peminjaman->add_alat_bahan($data, 'alat');
-      echo "<script>alert('Berhasil menambah data alat!');</script>";
-      redirect('admin/c_peminjaman/data_alat', 'refresh');
+        if ( !$this->upload->do_upload('sop')){
+          echo "<script>alert('Gagal menyimpan data!');</script>";
+          redirect('admin/c_peminjaman/data_alat', 'refresh');
+        } else {
+          $sop = $this->upload->data();
+
+          $data = array(
+            'nama_alat'   => $nama_alat,
+            'spesifikasi' => $spesifikasi,
+            'jumlah'      => $jumlah,
+            'kondisi'     => $kondisi,
+            'sop'         => 'upload/Alat-Kaca-SOP/'.$sop['file_name'],
+          );
+
+          $this->M_peminjaman->add_alat_bahan($data, 'alat');
+          echo "<script>alert('Berhasil menambah data alat!');</script>";
+          redirect('admin/c_peminjaman/data_alat', 'refresh');
+        }
+      } else {
+        $data = array(
+          'nama_alat'   => $nama_alat,
+          'spesifikasi' => $spesifikasi,
+          'jumlah'      => $jumlah,
+          'kondisi'     => $kondisi
+        );
+
+        $this->M_peminjaman->add_alat_bahan($data, 'alat');
+        echo "<script>alert('Berhasil menambah data alat!');</script>";
+        redirect('admin/c_peminjaman/data_alat', 'refresh');
+      }
     }
   }
   
@@ -235,12 +263,15 @@ class C_peminjaman extends CI_Controller{
 
   public function do_delete_alat($id_alat){
     $where = array('id_alat' => $id_alat);
+    $data_alat = $this->M_peminjaman->get_data_alat_by_id('alat', array('id_alat' => $id_alat));
+    $path = $data_alat[0]['sop'];
     
     $check = $this->M_peminjaman->check_inven_child('daftar_peminjaman_alat', $where);
     if (count($check) > 0) {
       echo "<script>alert('Alat ini tidak dapat dihapus! \\nUntuk menghapus alat ini, silahkan hubungi administrator!');</script>";
       redirect('admin/c_peminjaman/data_alat', 'refresh');
     } else {
+      delete_files(base_url($path));
       $this->M_peminjaman->delete_alat_bahan($where, 'alat');
       echo "<script>alert('Data berhasil dihapus!');</script>";
       redirect('admin/c_peminjaman/data_alat', 'refresh');
@@ -249,12 +280,15 @@ class C_peminjaman extends CI_Controller{
   
   public function do_delete_alat_instrumen($id_alat){
     $where = array('id_alat' => $id_alat);
-    
+    $data_alat = $this->M_peminjaman->get_data_alat_by_id('alat_instrumen', array('id_alat' => $id_alat));
+    $path = $data_alat[0]['sop'];
+
     $check = $this->M_peminjaman->check_inven_child('daftar_peminjaman_alat', $where);
     if (count($check) > 0) {
       echo "<script>alert('Alat ini tidak dapat dihapus! \\nUntuk menghapus alat ini, silahkan hubungi administrator!');</script>";
       redirect('admin/c_peminjaman/data_alat_instrumen', 'refresh');
     } else {
+      delete_files(base_url($path));
       $this->M_peminjaman->delete_alat_bahan($where, 'alat_instrumen');
       echo "<script>alert('Data berhasil dihapus!');</script>";
       redirect('admin/c_peminjaman/data_alat_instrumen', 'refresh');
@@ -324,21 +358,53 @@ class C_peminjaman extends CI_Controller{
       $spesifikasi  = $this->input->post('spesifikasi');
       $kondisi      = $this->input->post('kondisi');
       $jumlah       = $this->input->post('jumlah');
+      $sop          = $this->input->post('sop');
 
-      $data = array(
-        'nama_alat'   => $nama_alat,
-        'spesifikasi' => $spesifikasi,
-        'kondisi'     => $kondisi,
-        'jumlah'      => $jumlah
-      );
+      if ($_FILES['sop']['name'] != "") {
+        $config['upload_path']          = './upload/Alat-Kaca-SOP';
+        $config['allowed_types']        = 'pdf';
+        $config['max_size']             = 2048;
+        
+        $this->load->library('upload', $config);
+        
+        if(!$this->upload->do_upload('sop')) {
+          echo "<script>alert('Gagal menyimpan data!');</script>";
+          redirect('admin/c_peminjaman/data_alat', 'refresh');
+        } else {
+          $sop = $this->upload->data();
 
-      $where = array(
-        'id_alat' => $id
-      );
+          $data = array(
+            'nama_alat'   => $nama_alat,
+            'spesifikasi' => $spesifikasi,
+            'kondisi'     => $kondisi,
+            'jumlah'      => $jumlah,
+            'sop'         => 'upload/Alat-Kaca-SOP/'.$sop['file_name']
+          );
 
-      $this->M_peminjaman->update_alat_bahan($where, $data, 'alat');
-      echo "<script>alert('Data berhasil diperbaharui');</script>";
-      redirect('admin/c_peminjaman/data_alat', 'refresh');
+          $where = array(
+            'id_alat' => $id
+          );
+
+          $this->M_peminjaman->update_alat_bahan($where, $data, 'alat');
+          echo "<script>alert('Data berhasil diperbaharui');</script>";
+          redirect('admin/c_peminjaman/data_alat', 'refresh');
+        }
+      } else {
+        $data = array(
+          'nama_alat'   => $nama_alat,
+          'spesifikasi' => $spesifikasi,
+          'kondisi'     => $kondisi,
+          'jumlah'      => $jumlah
+        );
+
+        $where = array(
+          'id_alat' => $id
+        );
+
+        $this->M_peminjaman->update_alat_bahan($where, $data, 'alat');
+        echo "<script>alert('Data berhasil diperbaharui');</script>";
+        redirect('admin/c_peminjaman/data_alat', 'refresh');
+      }
     }
   }
   

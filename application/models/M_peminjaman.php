@@ -22,6 +22,12 @@ class M_peminjaman extends CI_Model{
     return $query->result();
   }
 
+  public function get_data_alat_by_id($table, $where) {
+    $query = $this->db->get_where($table, $where);
+
+    return $query->result_array();
+  }
+
   public function data_bahan(){
     $this->db->from('bahan');
     $this->db->order_by('nama_bahan asc');

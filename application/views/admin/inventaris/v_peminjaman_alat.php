@@ -43,9 +43,9 @@
                 <td><?php echo $u->jenis_kegiatan ?></td>
                 <td><?php echo $u->tgl_peminjaman ?></td>
                 <td>
-                <a href="<?php echo base_url();?>admin/c_peminjaman/daftar_peminjaman_alat/<?php print($u->id_peminjaman);?>" title="Lihat Daftar Alat" class="btn btn-success" data-toggle="tooltip" data-placement="bottom">
-                  <span class="glyphicon glyphicon-search" />
-                </a>
+                  <a href="<?php echo base_url();?>admin/c_peminjaman/daftar_peminjaman_alat/<?php print($u->id_peminjaman);?>" title="Lihat Daftar Alat" class="btn btn-success" data-toggle="tooltip" data-placement="bottom">
+                    <span class="glyphicon glyphicon-search" />
+                  </a>
                 </td>
               </tr>
               <?php } ?>

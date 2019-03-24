@@ -3,7 +3,7 @@
   <br />
   <div class="col-md-5">
     <?php echo validation_errors(); ?>
-    <form action="<?php echo base_url();?>admin/c_peminjaman/do_add_alat" method="post">
+    <form action="<?php echo base_url();?>admin/c_peminjaman/do_add_alat" method="post" enctype="multipart/form-data" runat="server">
       <table class="table table-borderless">
         <tr>
           <td style="min-width: 150px">Nama Alat</td>
@@ -22,6 +22,13 @@
         <tr>
           <td>Jumlah Alat</td>
           <td><input type="text" class="form-control" id="jumlah" name="jumlah" required></td>
+        </tr>
+                
+        <tr>
+          <td>SOP/IK</td>
+          <td>
+            <input type="file" accept=".pdf" id="sop" name="sop">
+          </td>
         </tr>
 
         <tr>
