@@ -22,12 +22,6 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Password</td><td>:</td>
-					<td>
-						<input type="text" name="password" value="<?php echo $u->password ?>" class="form-control" required>
-					</td>
-				</tr>
-				<tr>
 					<td></td><td></td>
 					<td><input type="submit" value="Simpan" class="btn btn-default"></td>
 				</tr>

@@ -9,6 +9,16 @@ class C_peminjaman extends CI_Controller{
     $this->load->model('m_mahasiswa');
   }
 
+  public function data_alat(){
+    $data = array(
+      'title' => 'Daftar Alat Kimia',
+      'isi'   => 'mahasiswa/peminjaman/v_alat_kimia',
+      'alat' => $this->m_peminjaman->data_alat()
+    );
+
+    $this->load->view('mahasiswa/layout2/wrapper', $data);
+  }
+
   public function data_bahan(){
     $data = array(
       'title' => 'Daftar Bahan Kimia',
