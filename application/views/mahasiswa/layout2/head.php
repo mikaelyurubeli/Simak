@@ -55,5 +55,8 @@
 
 <body>
 
-<div id="wrapper" class="container alls" style="min-width: 1024px">
+<div id="wrapper" class="container alls" style="min-width: 1024px; box-shadow: 0 2px 4px 0 rgba(0,0,0,.14); border: .5px solid #ddd;">
 
+<!-- 
+	More Info mikaelyuru@gmail.com
+ -->

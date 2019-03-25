@@ -56,3 +56,7 @@
 <body>
 
 <div id="wrapper" class="alle" style="min-width: 1024px">
+
+<!-- 
+	More Info mikaelyuru@gmail.com
+ -->

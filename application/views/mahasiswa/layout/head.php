@@ -24,10 +24,8 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script>
-
 	// comment
-	function doconfirm()
-	{
+	function doconfirm() {
 			job=confirm("Apakah anda yakin akan menghapus ini?");
 			if(job!=true)
 			{
@@ -35,8 +33,7 @@
 			}
 	}
 
-	function doconfirm2()
-	{
+	function doconfirm2() {
 			job=confirm("Apakah anda yakin data yang anda isi benar?");
 			if(job!=true)
 			{
@@ -45,13 +42,11 @@
 	}
 	</script>
 
-
-	<!--[if lt IE 9]>
-		<script src="{{asset  ('http::/localhost/laravelapp/public/js/html5shiv.min.js')}}"></script>
-		<script src="{{asset  ('http::/localhost/laravelapp/public/js/respond.min.js')}}"></script>
-	<![endif]-->
 </head>
 
 <body>
 
-<div id="wrapper" class="container alls" style="min-width: 1024px">
+<div id="wrapper" class="container alls" style="min-width: 1024px; box-shadow: 0 2px 4px 0 rgba(0,0,0,.14); border: .5px solid #ddd;">
+<!-- 
+	More Info mikaelyuru@gmail.com
+ -->

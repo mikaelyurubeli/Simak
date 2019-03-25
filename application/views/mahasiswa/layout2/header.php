@@ -76,6 +76,7 @@
           <ul class="dropdown-menu">
             <li><a href="<?php echo base_url();?>mahasiswa/c_peminjaman/peminjaman_alat">Peminjaman Alat Kimia</a></li>
             <li><a href="<?php echo base_url();?>mahasiswa/c_peminjaman/peminjaman_bahan">Pemakaian Bahan Kimia</a></li>
+            <li><a href="<?php echo base_url();?>mahasiswa/c_peminjaman/data_alat">SOP/IK Alat Kimia</a></li>
             <li><a href="<?php echo base_url();?>mahasiswa/c_peminjaman/data_bahan">LDKB Bahan Kimia</a></li>
             <!--<li><a href="#">Peminjaman Laboratorium</a></li>-->
           </ul>

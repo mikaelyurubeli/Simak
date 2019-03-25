@@ -1,7 +1,7 @@
 <div class="container-fluid footer">
 	<hr />
 	<p>SIMAK (Sistem Informasi Administrasi Laboratorium Kimia)
-	<p>&copy; 2017 Mikael-Y. All Rights Reserved</p>
+	<p>&copy; 2017 Lab-Kimia. All Rights Reserved</p>
 </div>
 
 <script type="text/javascript">
