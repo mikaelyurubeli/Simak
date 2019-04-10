@@ -108,10 +108,10 @@ $this->fpdf->SetFont('Times', 'bu', 10);
 $this->fpdf->Ln(1);
 $this->fpdf->Cell(16.5, 1, 'Tanda Persetujuan Kepala Lab. Kimia', 0, 0, 'C');
 $this->fpdf->Ln(2);
-$this->fpdf->Cell(16.5, 0.5, 'Dr. Fera Kurniadewi', 0, 0, 'C');
+$this->fpdf->Cell(16.5, 0.5, $kalab['nama'], 0, 0, 'C');
 $this->fpdf->Ln();
 $this->fpdf->SetFont('Times', 'b', 10);
-$this->fpdf->Cell(16.5, 0.5, 'NIP. 197612312001122002', 0, 1, 'C');
+$this->fpdf->Cell(16.5, 0.5, 'NIP. '.$kalab['nip'], 0, 1, 'C');
 $this->fpdf->Ln();
 /*End of Main*/
 

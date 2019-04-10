@@ -375,7 +375,8 @@ class C_penelitian extends CI_Controller{
       'title' => 'Penelitian',
       'data_penelitian' => $datap,
       'a' => $data3,
-      'b' => $data4
+      'b' => $data4,
+      'kalab' => $this->m_crud->get('kalab')->row_array()
     );
     // Load view "pdf_report" untuk menampilkan hasilnya
 
@@ -395,7 +396,8 @@ class C_penelitian extends CI_Controller{
       'title' => 'Penelitian',
       'data_penelitian' => $datap,
       'a' => $data3,
-      'b' => $data4
+      'b' => $data4,
+      'kalab' => $this->m_crud->get('kalab')->row_array()
     );
     // Load view "pdf_report" untuk menampilkan hasilnya
 
@@ -415,7 +417,8 @@ class C_penelitian extends CI_Controller{
       'title' => 'Penelitian',
       'data_penelitian' => $datap,
       'a' => $data3,
-      'b' => $data4
+      'b' => $data4,
+      'kalab' => $this->m_crud->get('kalab')->row_array()
     );
     // Load view "pdf_report" untuk menampilkan hasilnya
 
@@ -435,7 +438,8 @@ class C_penelitian extends CI_Controller{
       'title' => 'Penelitian',
       'data_penelitian' => $datap,
       'a' => $data3,
-      'b' => $data4
+      'b' => $data4,
+      'kalab' => $this->m_crud->get('kalab')->row_array()
     );
     // Load view "pdf_report" untuk menampilkan hasilnya
 
@@ -455,7 +459,8 @@ class C_penelitian extends CI_Controller{
       'title' => 'Penelitian',
       'data_penelitian' => $datap,
       'a' => $data3,
-      'b' => $data4
+      'b' => $data4,
+      'kalab' => $this->m_crud->get('kalab')->row_array()
     );
     // Load view "pdf_report" untuk menampilkan hasilnya
 
@@ -475,7 +480,8 @@ class C_penelitian extends CI_Controller{
       'title' => 'Penelitian',
       'data_penelitian' => $datap,
       'a' => $data3,
-      'b' => $data4
+      'b' => $data4,
+      'kalab' => $this->m_crud->get('kalab')->row_array()
     );
     // Load view "pdf_report" untuk menampilkan hasilnya
 
@@ -491,7 +497,8 @@ class C_penelitian extends CI_Controller{
     $data = array(
       'title' => 'Surat Izin Lembur',
       'data_penelitian' => $datap,
-      'a' => $data3
+      'a' => $data3,
+      'kalab' => $this->m_crud->get('kalab')->row_array()
     );
     // Load view "pdf_report" untuk menampilkan hasilnya
 

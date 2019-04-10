@@ -221,7 +221,8 @@ class C_peminjaman extends CI_Controller{
         'title' => 'Daftar Kebutuhan Alat',
         'lampiran' => 'Lampiran I',
         'data_alat' => $this->m_peminjaman->pinjam_alat($id_peminjaman),
-        'mahasiswa' => $mahasiswa
+        'mahasiswa' => $mahasiswa,
+        'kalab'     => $this->m_crud->get('kalab')->row_array()
       );
       // Load view "pdf_report" untuk menampilkan hasilnya
 
@@ -237,7 +238,8 @@ class C_peminjaman extends CI_Controller{
         'title' => 'Daftar Kebutuhan Bahan Kimia',
         'lampiran' => 'Lampiran II',
         'data_bahan' => $this->m_peminjaman->pinjam_bahan($id_peminjaman),
-        'mahasiswa' => $mahasiswa
+        'mahasiswa' => $mahasiswa,
+        'kalab'     => $this->m_crud->get('kalab')->row_array()
       );
       // Load view "pdf_report" untuk menampilkan hasilnya
 

@@ -155,5 +155,14 @@ class C_praktikum extends CI_Controller{
     $this->load->view('mahasiswa/layout/wrapper', $data);
   }
 
+  public function buku_panduan() {
+    $data = array(
+      'title' => 'Buku Panduan',
+      'isi'   => 'mahasiswa/praktikum/v_buku_panduan',
+      'data'  => $this->m_crud->get('buku_panduan_praktikum')->result()
+    );
+
+    $this->load->view('mahasiswa/layout2/wrapper', $data);
+  }
 
 }
