@@ -7,6 +7,13 @@ class M_master_data extends CI_Model{
 		return $query;
 	}
 
+	public function get_data($table) {
+		$query = $this->db->from($table)
+											->get();
+
+		return $query;
+	}
+
 	public function edit($where, $table){
     return $this->db->get_where($table, $where);
   }

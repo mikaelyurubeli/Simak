@@ -16,7 +16,56 @@ class C_master_data extends CI_Controller{
       'isi'   => 'admin/master_data/v_master_data'
     );
     $this->load->view('admin/layout/wrapper', $data);
-	}
+  }
+  
+  public function kalab() {
+    $data = array(
+      'title' => 'Kepala Laboratorium',
+      'isi'   => 'admin/master_data/v_kalab',
+      'data'  => $this->m_master_data->get_data('kalab')->result()
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+   
+  public function edit_kalab() {
+    $data = array(
+      'title' => 'Edit Kepala Laboratorium',
+      'isi'   => 'admin/master_data/v_edit_kalab',
+      'data'  => $this->m_master_data->get_data('kalab')->result()
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function do_update_kalab(){
+    $this->form_validation->set_rules('id', 'id', 'required');
+    $this->form_validation->set_rules('nip', 'nip', 'required');
+    $this->form_validation->set_rules('nama', 'nama', 'required');
+
+    if($this->form_validation->run() == FALSE){
+      echo "<script>alert('Gagal merubah data!');</script>";
+      redirect('admin/c_master_data/kalab', 'refresh');
+    } else {
+      $id = $this->input->post('id');
+      $nip      = $this->input->post('nip');
+      $nama     = $this->input->post('nama');
+
+      $data = array(
+        'id'  => $id,
+        'nip'       => $nip,
+        'nama'      => $nama
+      );
+
+      $where = array(
+        'id' => $id
+      );
+
+      $this->m_master_data->update($where, $data, 'kalab');
+      echo "<script>alert('Data Berhasil diperbaharui!');</script>";
+      redirect('admin/c_master_data/kalab', 'refresh');
+    }
+  }
 
 	public function edit_master_data($id_master){
     $where = array('id_master' => $id_master);
