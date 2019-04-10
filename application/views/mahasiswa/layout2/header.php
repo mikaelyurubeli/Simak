@@ -28,6 +28,7 @@
             <li><a href="<?php echo base_url();?>mahasiswa/c_praktikum">Jadwal Praktikum</a></li>
             <li><a href="<?php echo base_url();?>mahasiswa/c_praktikum/daftar_praktikum">Daftar Praktikum</a></li>
             <li><a href="<?php echo base_url();?>mahasiswa/c_praktikum/daftar_alat_pecah">Daftar Alat Pecah</a></li>
+            <li><a href="<?php echo base_url();?>mahasiswa/c_praktikum/buku_panduan">Buku Panduan Praktikum</a></li>
           </ul>
         </li>
         <!--<li class="dropdown">

@@ -10,6 +10,7 @@ class c_praktikum extends CI_controller{
     parent::__construct();
     $this->load->model('m_praktikum');
     $this->load->model('m_mahasiswa');
+    $this->load->model('M_peminjaman');
   }
 
   public function praktikum(){
@@ -18,6 +19,26 @@ class c_praktikum extends CI_controller{
       'isi'   => 'admin/praktikum/v_praktikum',
       'hasil_praktikum' => $this->m_praktikum->praktikum(),
       'nama_praktikum' => $this->m_praktikum->nama_praktikum()
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function buku_panduan() {
+    $data = array(
+      'title' => 'Buku Panduan Praktikum',
+      'data'  => $this->m_crud->get('buku_panduan_praktikum')->result(),
+      'isi'   => 'admin/praktikum/v_bp_praktikum'
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+  
+  public function add_buku_panduan() {
+    $data = array(
+      'title' => 'Tambah Buku Panduan Praktikum',
+      'isi'   => 'admin/praktikum/v_add_bp',
+      'nama_praktikum' => $this->m_praktikum->nama_praktikum(),
     );
 
     $this->load->view('admin/layout/wrapper', $data);
@@ -131,6 +152,124 @@ class c_praktikum extends CI_controller{
         redirect('admin/c_praktikum/praktikum', 'refresh');
       }
       }
+  }
+
+  public function do_add_bp() {
+    $this->form_validation->set_rules('nama_praktikum', 'nama_praktikum', 'trim|required');
+
+    if($this->form_validation->run() == FALSE){
+      echo "<script>alert(Gagal menambah buku panduan!');</script>";
+      redirect('admin/c_praktikum/add_buku_panduan', 'refresh');
+    } else {
+      $nama_praktikum    = $this->input->post('nama_praktikum');
+      $url_file          = $this->input->post('url_file');
+
+      if ($_FILES['url_file']['name'] != "") {
+        $config['upload_path']          = './upload/Buku-Panduan';
+        $config['allowed_types']        = 'pdf';
+        $config['max_size']             = 2048;
+        
+        $this->load->library('upload', $config);
+
+        if ( !$this->upload->do_upload('url_file')){
+          echo "<script>alert('Gagal saat proses upload!');</script>";
+          var_dump($this->upload->display_errors());
+          redirect('admin/c_praktikum/add_buku_panduan', 'refresh');
+        } else {
+          $url_file = $this->upload->data();
+
+          $data = array(
+            'nama_praktikum'   => $nama_praktikum,
+            'url_file'         => 'upload/Buku-Panduan/'.$url_file['file_name'],
+          );
+
+          $this->m_crud->add($data, 'buku_panduan_praktikum');
+          echo "<script>alert('Berhasil menambah buku panduan!');</script>";
+          redirect('admin/c_praktikum/buku_panduan', 'refresh');
+        }
+      } else {
+        $data = array(
+          'nama_praktikum'   => $nama_praktikum,
+        );
+
+        $this->m_crud->add($data, 'buku_panduan_praktikum');
+        echo "<script>alert('Berhasil menambah buku panduan!');</script>";
+        redirect('admin/c_praktikum/buku_panduan', 'refresh');
+      }
+    }
+  }
+
+  public function edit_bp($id) {
+    $where = array('id' => $id);
+
+    $data = array(
+      'title' => 'Edit Buku Panduan',
+      'isi'   => 'admin/praktikum/v_edit_bp',
+      'data'  => $this->m_crud->get_where('buku_panduan_praktikum', $where)->result(),
+      'praktikum' => $this->m_praktikum->praktikum2(),
+    );
+
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+
+  public function update_bp() {
+    $this->form_validation->set_rules('nama_praktikum', 'nama_praktikum', 'required');
+
+    if($this->form_validation->run() == FALSE){
+      echo "<script>alert('Gagal menyimpan data!');</script>";
+      redirect('admin/c_praktikum/buku_panduan', 'refresh');
+    } else {
+      $id             = $this->input->post('id');
+      $nama_praktikum = $this->input->post('nama_praktikum');
+
+      if ($_FILES['url_file']['name'] != "") {
+        $config['upload_path']          = './upload/Buku-Panduan';
+        $config['allowed_types']        = 'pdf';
+        $config['max_size']             = 2048;
+        
+        $this->load->library('upload', $config);
+        
+        if(!$this->upload->do_upload('url_file')) {
+          echo "<script>alert('Gagal menyimpan data!');</script>";
+          redirect('admin/c_praktikum/buku_panduan', 'refresh');
+        } else {
+          $url_file = $this->upload->data();
+
+          $data = array(
+            'nama_praktikum'  => $nama_praktikum,
+            'url_file'        => 'upload/Buku-Panduan/'.$url_file['file_name']
+          );
+
+          $where = array(
+            'id' => $id
+          );
+
+          $this->M_peminjaman->update_alat_bahan($where, $data, 'buku_panduan_praktikum');
+          echo "<script>alert('Data berhasil diperbaharui');</script>";
+          redirect('admin/c_praktikum/buku_panduan', 'refresh');
+        }
+      } else {
+        $data = array(
+          'nama_praktikum'  => $nama_praktikum,
+        );
+
+        $where = array(
+          'id' => $id
+        );
+
+        $this->M_peminjaman->update_alat_bahan($where, $data, 'buku_panduan_praktikum');
+        echo "<script>alert('Data berhasil diperbaharui');</script>";
+        redirect('admin/c_praktikum/buku_panduan', 'refresh');
+      }
+    }
+  }
+
+  public function delete_bp($id) {
+    $where = array('id' => $id);
+
+    $this->m_crud->delete($where, 'buku_panduan_praktikum');    
+    echo "<script>alert('Data berhasil dihapus!');</script>";
+    redirect('admin/c_praktikum/buku_panduan', 'refresh');
   }
 
   public function edit_praktikum($id_praktikum){
@@ -465,4 +604,5 @@ class c_praktikum extends CI_controller{
     echo "<script>alert('Data berhasil dihapus!');</script>";
     redirect('admin/c_praktikum/daftar_alat_pecah', 'refresh');
   }
+
 }

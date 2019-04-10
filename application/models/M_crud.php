@@ -1,6 +1,18 @@
 <?php
 
 class M_crud extends CI_Model {
+    public function get($table) {
+        $query = $this->db->from($table)
+                          ->get();
+
+        return $query;
+    }
+
+    public function get_where($table, $where) {
+        $query = $this->db->get_where($table, $where);
+        
+        return $query;
+    }
 
     public function add($data, $table){
         $this->db->insert($table, $data);
@@ -15,8 +27,8 @@ class M_crud extends CI_Model {
         $this->db->update($table, $data);
     }
 
-    public function delete($where, $tabel){
+    public function delete($where, $table){
         $this->db->where($where);
-        $this->db->delete($tabel);
+        $this->db->delete($table);
     }
 }
