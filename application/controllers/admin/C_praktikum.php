@@ -167,7 +167,7 @@ class c_praktikum extends CI_controller{
       if ($_FILES['url_file']['name'] != "") {
         $config['upload_path']          = './upload/Buku-Panduan';
         $config['allowed_types']        = 'pdf';
-        $config['max_size']             = 2048;
+        $config['max_size']             = 15000;
         
         $this->load->library('upload', $config);
 
@@ -225,7 +225,7 @@ class c_praktikum extends CI_controller{
       if ($_FILES['url_file']['name'] != "") {
         $config['upload_path']          = './upload/Buku-Panduan';
         $config['allowed_types']        = 'pdf';
-        $config['max_size']             = 2048;
+        $config['max_size']             = 15000;
         
         $this->load->library('upload', $config);
         
